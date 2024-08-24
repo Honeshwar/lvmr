@@ -38,11 +38,14 @@ a {
   color: var(--primary) !important;
 }
 .navbar a:not(.last-nav-item) {
-  color: var(--light) !important;
+  /* color: var(--light) !important; */
+  color: white !important;
 }
 .navbar a:hover {
   background-color: transparent !important;
-  color: var(--light) !important;
+  /* color: var(--light) !important; */
+  color: white !important;
+  text-decoration: underline;
 }
 .cat-item,
 .testimonial-item,
@@ -68,6 +71,15 @@ body > div > div:nth-child(8) > div > div > div {
   background-color: var(--primary) !important;
 }
 
+/*  */
+.sticky-top .navbar a:not(.last-nav-item) {
+  color: var(--light) !important;
+}
+.sticky-top .navbar a:hover {
+  background-color: transparent !important;
+  color: var(--light) !important;
+  /* text-decoration: underline; */
+}
 /* ///////////////////////////////////////////////////////////////// */
 
 .back-to-top {
@@ -141,6 +153,8 @@ body > div > div:nth-child(8) > div > div > div {
   position: sticky;
   padding: 0;
   z-index: 9999;
+
+  background-color: white !important;
 }
 
 .navbar {
@@ -234,6 +248,14 @@ body > div > div:nth-child(8) > div > div > div {
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
+  left: 0;
+  right: 0;
+  top: 88%;
+  margin-inline: auto;
+  width: fit-content;
+  gap: 10px;
+  flex-direction: row;
+  display: none;
 }
 
 .header-carousel .owl-nav .owl-prev,
