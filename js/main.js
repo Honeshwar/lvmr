@@ -18,8 +18,10 @@
   $(window).scroll(function () {
     if ($(this).scrollTop() > 45) {
       $(".nav-bar").addClass("sticky-top");
+      $(".sub-logo-lvmr").hide();
     } else {
       $(".nav-bar").removeClass("sticky-top");
+      $(".sub-logo-lvmr").show();
     }
   });
 

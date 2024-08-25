@@ -73,12 +73,14 @@ body > div > div:nth-child(8) > div > div > div {
 
 /*  */
 .sticky-top .navbar a:not(.last-nav-item) {
-  color: var(--light) !important;
+  /* color: var(--light) !important; */
+  color: white !important;
 }
 .sticky-top .navbar a:hover {
   background-color: transparent !important;
-  color: var(--light) !important;
+  /* color: var(--light) !important; */
   /* text-decoration: underline; */
+  color: white !important;
 }
 /* ///////////////////////////////////////////////////////////////// */
 
@@ -154,7 +156,7 @@ body > div > div:nth-child(8) > div > div > div {
   padding: 0;
   z-index: 9999;
 
-  background-color: white !important;
+  background-color: rgb(0, 0, 0) !important;
 }
 
 .navbar {
@@ -312,7 +314,7 @@ body > div > div:nth-child(8) > div > div > div {
   z-index: 2;
 }
 
-.about-img::before {
+/* .about-img::before {
   position: absolute;
   content: "";
   top: 0;
@@ -322,7 +324,7 @@ body > div > div:nth-child(8) > div > div > div {
   background: var(--primary);
   transform: skew(20deg);
   z-index: 1;
-}
+} */
 
 /*** Category ***/
 .cat-item div {

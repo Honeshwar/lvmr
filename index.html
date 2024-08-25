@@ -87,13 +87,19 @@
             >
               <img
                 class="img-fluid"
-                src="img/l.jpg"
+                src="img/logo1.png"
+                alt="Icon"
+                style="width: 30px; height: 30px"
+              />
+            </div>
+            <h1 class="mx-3 text-primary sub-logo-lvmr">
+              <img
+                class="img-fluid"
+                src="img/logo2.jpg"
                 alt="Icon"
                 style="width: fit-content; height: 50px"
               />
-              <!-- style="width: 30px; height: 30px" -->
-            </div>
-            <!-- <h1 class="m-0 text-primary">LVMR</h1> -->
+            </h1>
           </a>
           <button
             type="button"
@@ -106,7 +112,7 @@
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto">
               <a href="index.html" class="nav-item nav-link active">Home</a>
-              <a href="about.html" class="nav-item nav-link">About</a>
+              <a href="#about-us" class="nav-item nav-link">About</a>
               <div class="nav-item dropdown">
                 <a
                   href="#"
@@ -171,10 +177,10 @@
           <div class="col-md-12 animated fadeIn">
             <div class="owl-carousel header-carousel">
               <div class="owl-carousel-item">
-                <img class="img-fluid" src="img/h1.jpg" alt="" />
+                <img class="img-fluid" src="img/h1.jpeg" alt="" />
               </div>
               <div class="owl-carousel-item">
-                <img class="img-fluid" src="img/h1.jpg" alt="" />
+                <img class="img-fluid" src="img/h1.jpeg" alt="" />
               </div>
             </div>
           </div>
@@ -226,11 +232,23 @@
       <!-- Search End -->
 
       <!-- About Start -->
-      <div class="container-xxl py-5">
+      <div id="about-us" class="container-xxl py-5">
         <div class="container">
-          <div class="row g-5 align-items-center">
-            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-              <div class="about-img position-relative overflow-hidden p-5 pe-0">
+          <div
+            class="text-center mx-auto mb-5 wow fadeInUp"
+            data-wow-delay="0.1s"
+            style="max-width: 600px"
+          >
+            <h1 class="">About Us</h1>
+            <!-- <p>
+              Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut
+              dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed
+              rebum vero dolor duo.
+            </p> -->
+          </div>
+          <div class="row g-5 align-items-center justify-content-between">
+            <div class="col-lg-5 wow fadeIn" data-wow-delay="0.1s">
+              <div class="about-img position-relative overflow-hidden p-0 pe-0">
                 <img class="img-fluid w-100" src="img/about.jpg" />
               </div>
             </div>
@@ -1727,7 +1745,9 @@
             </div>
             <div class="col-lg-3 col-md-6">
               <h5 class="text-white mb-4">Quick Links</h5>
-              <a class="btn btn-link text-white-50" href="">About Us</a>
+              <a class="btn btn-link text-white-50" href="#about-us"
+                >About Us</a
+              >
               <a class="btn btn-link text-white-50" href="">Contact Us</a>
               <a class="btn btn-link text-white-50" href="">Our Services</a>
               <a class="btn btn-link text-white-50" href="">Privacy Policy</a>
