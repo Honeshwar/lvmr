@@ -1,76 +1,181 @@
-(function ($) {
-  "use strict";
+(function($) {
 
-  // Spinner
-  var spinner = function () {
-    setTimeout(function () {
-      if ($("#spinner").length > 0) {
-        $("#spinner").removeClass("show");
+	'use strict';
+
+	// bootstrap dropdown hover
+
+  // loader
+  var loader = function() {
+    setTimeout(function() { 
+      if($('#loader').length > 0) {
+        $('#loader').removeClass('show');
       }
     }, 1);
   };
-  spinner();
+  loader();
 
-  // Initiate the wowjs
-  new WOW().init();
+  // Stellar
+  $(window).stellar();
 
-  // Sticky Navbar
-  $(window).scroll(function () {
-    if ($(this).scrollTop() > 45) {
-      $(".nav-bar").addClass("sticky-top");
-      $(".sub-logo-lvmr").hide();
-    } else {
-      $(".nav-bar").removeClass("sticky-top");
-      $(".sub-logo-lvmr").show();
-    }
-  });
+	
+	$('nav .dropdown').hover(function(){
+		var $this = $(this);
+		$this.addClass('show');
+		$this.find('> a').attr('aria-expanded', true);
+		$this.find('.dropdown-menu').addClass('show');
+	}, function(){
+		var $this = $(this);
+			$this.removeClass('show');
+			$this.find('> a').attr('aria-expanded', false);
+			$this.find('.dropdown-menu').removeClass('show');
+	});
 
-  // Back to top button
-  $(window).scroll(function () {
-    if ($(this).scrollTop() > 300) {
-      $(".back-to-top").fadeIn("slow");
-    } else {
-      $(".back-to-top").fadeOut("slow");
-    }
-  });
-  $(".back-to-top").click(function () {
-    $("html, body").animate({ scrollTop: 0 }, 1500, "easeInOutExpo");
-    return false;
-  });
 
-  // Header carousel
-  $(".header-carousel").owlCarousel({
+	$('#dropdown04').on('show.bs.dropdown', function () {
+	  console.log('show');
+	});
+
+
+
+	// home slider
+	$('.home-slider').owlCarousel({
+    loop:true,
     autoplay: true,
-    smartSpeed: 1500,
+    margin:10,
+    animateOut: 'fadeOut',
+    animateIn: 'fadeIn',
+    nav:true,
+    autoplayHoverPause: true,
     items: 1,
-    dots: true,
-    loop: true,
-    nav: true,
-    navText: [
-      '<i class="bi bi-chevron-left"></i>',
-      '<i class="bi bi-chevron-right"></i>',
-    ],
-  });
+    navText : ["<span class='ion-chevron-left'></span>","<span class='ion-chevron-right'></span>"],
+    responsive:{
+      0:{
+        items:1,
+        nav:false
+      },
+      600:{
+        items:1,
+        nav:false
+      },
+      1000:{
+        items:1,
+        nav:true
+      }
+    }
+	});
 
-  // Testimonials carousel
-  $(".testimonial-carousel").owlCarousel({
-    autoplay: true,
-    smartSpeed: 1000,
-    margin: 24,
+	// owl carousel
+	var majorCarousel = $('.js-carousel-1');
+	majorCarousel.owlCarousel({
+    loop:true,
+    autoplay: false,
+    stagePadding: 0,
+    margin: 10,
+    animateOut: 'fadeOut',
+    animateIn: 'fadeIn',
+    nav: false,
     dots: false,
-    loop: true,
-    nav: true,
-    navText: [
-      '<i class="bi bi-arrow-left"></i>',
-      '<i class="bi bi-arrow-right"></i>',
-    ],
-    responsive: {
-      0: {
-        items: 1,
+    autoplayHoverPause: false,
+    items: 3,
+    responsive:{
+      0:{
+        items:1,
+        nav:false
       },
-      992: {
-        items: 2,
+      600:{
+        items:2,
+        nav:false
       },
-    },
-  });
+      1000:{
+        items:3,
+        nav:true,
+        loop:false
+      }
+  	}
+	});
+
+  // cusotm owl navigation events
+  $('.custom-next').click(function(event){
+    event.preventDefault();
+    // majorCarousel.trigger('owl.next');
+    majorCarousel.trigger('next.owl.carousel');
+
+  })
+  $('.custom-prev').click(function(event){
+    event.preventDefault();
+    // majorCarousel.trigger('owl.prev');
+    majorCarousel.trigger('prev.owl.carousel');
+  })
+
+	// owl carousel
+	var major2Carousel = $('.js-carousel-2');
+	major2Carousel.owlCarousel({
+    loop:true,
+    autoplay: true,
+    stagePadding: 7,
+    margin: 20,
+    animateOut: 'fadeOut',
+    animateIn: 'fadeIn',
+    nav: false,
+    autoplayHoverPause: true,
+    items: 4,
+    navText : ["<span class='ion-chevron-left'></span>","<span class='ion-chevron-right'></span>"],
+    responsive:{
+      0:{
+        items:1,
+        nav:false
+      },
+      600:{
+        items:3,
+        nav:false
+      },
+      1000:{
+        items:4,
+        nav:true,
+        loop:false
+      }
+  	}
+	});
+
+
+ 
+
+	var contentWayPoint = function() {
+		var i = 0;
+		$('.element-animate').waypoint( function( direction ) {
+
+			if( direction === 'down' && !$(this.element).hasClass('element-animated') ) {
+				
+				i++;
+
+				$(this.element).addClass('item-animate');
+				setTimeout(function(){
+
+					$('body .element-animate.item-animate').each(function(k){
+						var el = $(this);
+						setTimeout( function () {
+							var effect = el.data('animate-effect');
+							if ( effect === 'fadeIn') {
+								el.addClass('fadeIn element-animated');
+							} else if ( effect === 'fadeInLeft') {
+								el.addClass('fadeInLeft element-animated');
+							} else if ( effect === 'fadeInRight') {
+								el.addClass('fadeInRight element-animated');
+							} else {
+								el.addClass('fadeInUp element-animated');
+							}
+							el.removeClass('item-animate');
+						},  k * 100);
+					});
+					
+				}, 100);
+				
+			}
+
+		} , { offset: '95%' } );
+	};
+	contentWayPoint();
+
+
+
 })(jQuery);
