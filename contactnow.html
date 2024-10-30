@@ -94,24 +94,24 @@
       <div class="row">
         <div class="col-md-6">
           <h2 class="text-center mb-4 text-md-left mb-md-5">Contact Form</h2>
-          <form action="#" method="post">
+          <form id="contactNowForm">
 
             <div class="row">
               <div class="col-md-6 form-group">
                 <label for="name">Name</label>
-                <input type="text" id="name" class="form-control " required>
+                <input type="text" name="name" id="name" class="form-control " required>
               </div>
 
               <div class="col-md-6 form-group">
                 <label for="phone">Phone</label>
-                <input type="text" id="phone" class="form-control " required>
+                <input type="text" name="phone" id="phone" class="form-control " required>
               </div>
             </div>
 
             <div class="row">
               <div class="col-md-6 form-group">
                 <label for="room">Room Type</label>
-                <select name="" id="room" class="form-control">
+                <select name="room_type" id="room" class="form-control" required>
                   <option value="" selected disabled>Select</option>
                   <option value="Single Room">Single Room</option>
                   <option value="Double Room">Double Rooms</option>
@@ -122,7 +122,7 @@
 
               <div class="col-md-6 form-group">
                 <label for="gender">Gender</label>
-                <select name="" id="gender" class="form-control" required>
+                <select name="gender" id="gender" class="form-control" required>
                   <option value="" selected disabled>Select</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
@@ -139,8 +139,8 @@
             </div> -->
             <div class="row">
               <div class="col-md-12 form-group">
-                <label for="message">Write a Note</label>
-                <textarea name="message" id="message" class="form-control " cols="30" rows="8"></textarea>
+                <label for="question">Write Your Question <i><small>(Optional)</small></i></label>
+                <textarea name="question" id="question" class="form-control " cols="30" rows="8"></textarea>
               </div>
             </div>
             <div class="row">
@@ -238,6 +238,27 @@
         stroke="#f4b214" />
     </svg></div>
 
+  <!-- Modal -->
+  <div id="contactNowModal" class="modal" tabindex="-1" style="display: none; background-color: rgba(0, 0, 0, 0.5);">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Message</h5>
+          <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+        </div>
+        <div class="modal-body">
+          <p id="modalMessage">Your message has been sent successfully. Our support team will get back to you shortly.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+            onclick="$('#contactNowModal').hide()">Close</button>
+          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="js/jquery-3.2.1.min.js"></script>
   <script src="js/jquery-migrate-3.0.0.js"></script>
   <script src="js/popper.min.js"></script>
@@ -260,6 +281,39 @@
 
 
   <script src="js/main.js"></script>
+  <script type="text/javascript">
+    let url = 'https://script.google.com/macros/s/AKfycbwbhtG06wDHSEM3qzJnkagzyeKH-I_NYPH-QVgp4btKLFBHsOPdXD6jfSZ8yzz9mZ7ltw/exec';
+
+    let form = document.querySelector('#contactNowForm');
+    form.addEventListener("submit", (e) => {
+      let d = new FormData(form);
+      fetch(url, {
+        method: "POST",
+        body: d,
+      }).then((res) => res.text())
+        .then((finalRes) => {
+          console.log(finalRes)
+          document.querySelector('#modalMessage').innerHTML = "Your message has been sent successfully. Our support team will get back to you shortly.";
+          $('#contactNowModal').show()
+          form.reset();
+        }).catch((err) => {
+          console.log(err)
+          document.querySelector('#modalMessage').innerHTML = "Failed to send, please try again.";
+          $('#contactNowModal').show()
+          form.reset();
+        })
+      e.preventDefault();
+    })
+
+    // fetch(url).then((res) => res.json())
+    //     .then((result) => {
+    //         console.log(result)
+    //         document.querySelector('#success').innerHTML = JSON.stringify(result)
+    //     }).catch((err) => {
+    //         console.log(err)
+    //         document.querySelector('#error').innerHTML = err
+    //     })
+  </script>
 </body>
 
 </html>
