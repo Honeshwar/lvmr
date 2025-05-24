@@ -194,6 +194,12 @@ header .navbar.navbar-light .nav-link.active {
   height: 100vh;
 }
 
+@media screen and (max-width: 800px) {
+  .site-hero.overlay {
+    background-position: 60% center !important;
+  }
+}
+
 .site-hero > .container {
   position: relative;
   z-index: 2;
