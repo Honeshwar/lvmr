@@ -55,7 +55,14 @@ header .navbar-brand img {
   filter: drop-shadow(0 0 0px rgb(255, 217, 0));
 }
 
-@media screen and (max-width: 800px) {
+/* @media screen and (max-width: 800px) {
+  
+} */
+/* Change navbar background when toggled on mobile */
+@media (max-width: 991.98px) {
+  header:has(.navbar-collapse.show) {
+    background-color: #000000; /* Change to your desired color */
+  }
   header .custom-container {
     display: block;
     justify-content: space-between;
@@ -72,6 +79,15 @@ header .navbar-brand img {
   }
   header .navbar-brand img {
     width: 70px;
+  }
+  .navbar-dark .navbar-toggler {
+    border-color: lightgray;
+  }
+  #sub-dropdown {
+    background-color: black;
+  }
+  #sub-dropdown .dropdown-item {
+    color: white;
   }
 }
 
