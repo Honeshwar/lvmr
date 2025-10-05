@@ -209,7 +209,7 @@ header .navbar.navbar-light .nav-link.active {
   min-height: 750px;
   height: 100vh;
 }
-.site-hero.home div:not(.owl-dots) {
+.site-hero.home div:not(.owl-dots, .owl-nav) {
   height: 100%;
 }
 .site-hero.home .content {
@@ -2001,11 +2001,9 @@ textarea.form-control {
 /* Dots and nav buttons for site-hero */
 .owl-carousel .owl-nav {
   position: absolute;
-  top: 0;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: fit-content;
+  top: 50%;
 }
 .owl-carousel .owl-nav button.owl-next,
 .owl-carousel .owl-nav button.owl-prev,
@@ -2032,8 +2030,9 @@ textarea.form-control {
 @media screen and (max-width: 768px) {
   .owl-carousel .owl-nav {
     align-items: flex-end;
-    margin-top: -34%;
     line-height: unset;
+    top: unset;
+    bottom: 16%;
   }
   .owl-carousel .owl-nav button.owl-next,
   .owl-carousel .owl-nav button.owl-prev,
