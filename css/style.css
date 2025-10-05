@@ -1944,6 +1944,7 @@ textarea.form-control {
 .gallery-image img {
   margin-left: auto;
   margin-right: auto;
+  height: 100%;
 }
 
 .gallery-image a.info {
