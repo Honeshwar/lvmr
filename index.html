@@ -237,7 +237,7 @@
     </header>
     <!-- END header -->
 
-    <section
+    <!-- <section
       class="site-hero overlay"
       data-stellar-background-ratio="0.5"
       style="
@@ -261,7 +261,60 @@
           </div>
         </div>
       </div>
+    </section> -->
+
+    <section class="site-hero home">
+      <div class="owl-carousel hero-carousel">
+        <div
+          class="item overlay"
+          style="background-image: url('images/front1.webp')"
+        >
+          <div class="content">
+            <h1>LVMR MIDTOWN</h1>
+            <h1>Elevate Your Living Experience</h1>
+            <p>PG (Paying Guest) For Working Professionals & Students</p>
+            <a href="#contact-us" class="btn btn-primary">Contact Now</a>
+          </div>
+        </div>
+
+        <div
+          class="item overlay"
+          style="background-image: url('images/front2.webp')"
+        >
+          <div class="content">
+            <h1>LVMR MIDTOWN</h1>
+            <h1>Comfort Meets Convenience</h1>
+            <p>Modern amenities for your perfect stay</p>
+            <a href="#contact-us" class="btn btn-primary">Contact Now</a>
+          </div>
+        </div>
+
+        <div
+          class="item overlay"
+          style="background-image: url('images/front3.webp')"
+        >
+          <div class="content">
+            <h1>LVMR MIDTOWN</h1>
+            <h1>Find Your Perfect Space</h1>
+            <p>Ideal for Students and Professionals</p>
+            <a href="#contact-us" class="btn btn-primary">Contact Now</a>
+          </div>
+        </div>
+
+        <div
+          class="item overlay"
+          style="background-image: url('images/front4.webp')"
+        >
+          <div class="content">
+            <h1>LVMR MIDTOWN</h1>
+            <h1>Comfort Meets Convenience</h1>
+            <p>Modern amenities for your perfect stay</p>
+            <a href="#contact-us" class="btn btn-primary">Contact Now</a>
+          </div>
+        </div>
+      </div>
     </section>
+
     <!-- END section -->
 
     <!--service block--->
@@ -632,5 +685,21 @@
     <script src="js/magnific-popup-options.js"></script>
 
     <script src="js/main.js"></script>
+    <script>
+      $(document).ready(function () {
+        $(".hero-carousel").owlCarousel({
+          items: 1,
+          loop: true,
+          autoplay: true,
+          autoplayTimeout: 5000, // 5 seconds
+          autoplayHoverPause: true,
+          dots: true,
+          nav: true,
+          navText: ["&#10094;", "&#10095;"], // left/right arrows
+          animateOut: "fadeOut",
+          smartSpeed: 800,
+        });
+      });
+    </script>
   </body>
 </html>
