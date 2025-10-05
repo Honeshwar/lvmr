@@ -1,6 +1,19 @@
 (function ($) {
   "use strict";
 
+  $(".hero-carousel")?.owlCarousel({
+    items: 1,
+    loop: true,
+    autoplay: true,
+    autoplayTimeout: 5000, // 5 seconds
+    autoplayHoverPause: true,
+    dots: true,
+    nav: true,
+    navText: ["&#10094;", "&#10095;"], // left/right arrows
+    animateOut: "fadeOut",
+    smartSpeed: 800,
+  });
+
   // bootstrap dropdown hover
 
   // loader
