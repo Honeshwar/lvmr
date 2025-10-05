@@ -4,7 +4,7 @@
   $(".hero-carousel")?.owlCarousel({
     items: 1,
     loop: true,
-    autoplay: false,
+    autoplay: true,
     autoplayTimeout: 5000, // 5 seconds
     autoplayHoverPause: true,
     dots: true,
