@@ -239,6 +239,7 @@ header .navbar.navbar-light .nav-link.active {
 }
 .site-hero.overlay {
   position: relative;
+  width: 100%;
 }
 
 .site-hero.overlay:before {
@@ -299,7 +300,7 @@ header .navbar.navbar-light .nav-link.active {
 
 @media (max-width: 1199.98px) {
   .site-hero .overlay h1 {
-    font-size: 40px;
+    font-size: 35px;
   }
 }
 
@@ -308,8 +309,9 @@ header .navbar.navbar-light .nav-link.active {
 }
 
 @media (max-width: 1199.98px) {
-  .site-hero.overlay p {
-    font-size: 20px;
+  .site-hero .overlay p {
+    font-size: 25px;
+    line-height: 35px;
   }
 }
 
@@ -440,6 +442,8 @@ header .navbar.navbar-light .nav-link.active {
 .site-section .site-section-img {
   border-radius: 10px;
   filter: drop-shadow(2px 4px 6px lightgray);
+  /* scale: 1.4;
+  translate: 10%; */
 }
 
 .site-section .room,
@@ -477,6 +481,10 @@ header .navbar.navbar-light .nav-link.active {
 @media (max-width: 767.98px) {
   .img-md-fluid {
     max-width: 100%;
+  }
+  .site-section .site-section-img {
+    scale: 1;
+    translate: 0%;
   }
 }
 
@@ -1513,8 +1521,8 @@ textarea.form-control {
   }
 
   .heading-wrap .heading {
-    font-size: 40px;
-    margin-bottom: 30px;
+    font-size: 35px;
+    margin-bottom: 25px;
   }
 
   .site-section {
@@ -1746,9 +1754,15 @@ textarea.form-control {
   border-radius: 16px;
   opacity: 0;
   visibility: hidden;
-  -webkit-transition: opacity 0.2s ease-out, visibility 0s linear 0.2s;
-  -o-transition: opacity 0.2s ease-out, visibility 0s linear 0.2s;
-  transition: opacity 0.2s ease-out, visibility 0s linear 0.2s;
+  -webkit-transition:
+    opacity 0.2s ease-out,
+    visibility 0s linear 0.2s;
+  -o-transition:
+    opacity 0.2s ease-out,
+    visibility 0s linear 0.2s;
+  transition:
+    opacity 0.2s ease-out,
+    visibility 0s linear 0.2s;
   z-index: 1000;
 }
 
@@ -1768,9 +1782,15 @@ textarea.form-control {
 }
 
 #loader.show {
-  -webkit-transition: opacity 0.4s ease-out, visibility 0s linear 0s;
-  -o-transition: opacity 0.4s ease-out, visibility 0s linear 0s;
-  transition: opacity 0.4s ease-out, visibility 0s linear 0s;
+  -webkit-transition:
+    opacity 0.4s ease-out,
+    visibility 0s linear 0s;
+  -o-transition:
+    opacity 0.4s ease-out,
+    visibility 0s linear 0s;
+  transition:
+    opacity 0.4s ease-out,
+    visibility 0s linear 0s;
   visibility: visible;
   opacity: 1;
 }
@@ -1844,13 +1864,13 @@ textarea.form-control {
 }
 
 /*service block*/
-.service-block {
-  padding: 40px 0 0 0;
-}
+/* .service-block {
+  padding-bottom: 2em;
+} */
 .service-block > h4 {
   font-family: "Playfair Display", times, serif;
   font-size: 50px;
-  margin-bottom: 40px;
+  margin-bottom: 60px;
 }
 .service-block .row {
   row-gap: 40px;
@@ -1883,14 +1903,15 @@ textarea.form-control {
 
 .gallery-front .gallery-image {
   position: relative;
-  max-width: 263px;
+  /* max-width: 263px; */
   margin-right: auto;
   margin-left: auto;
   height: 100%;
+  width: 100%;
 }
 
 .gallery-image {
-  max-width: 171px;
+  /* max-width: 171px; */
   margin-left: auto;
   margin-right: auto;
   position: relative;
@@ -2043,4 +2064,55 @@ textarea.form-control {
   .owl-carousel .owl-dots {
     bottom: 15%;
   }
+  .service-block > h4 {
+    font-family: "Playfair Display", times, serif;
+    font-size: 35px;
+    margin-bottom: 25px;
+  }
+}
+
+/* Container to align buttons side-by-side */
+.map-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  margin-top: 15px;
+}
+
+/* Base button styling */
+.map-btn {
+  /* display: inline-flex;
+  align-items: center;
+  padding: 10px 18px;
+  background-color: #ffffff;
+  color: #1a73e8; /* Google Maps Blue */
+  /* text-decoration: none;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid #dadce0;
+  border-radius: 24px; /* Rounded pill shape */
+  /* transition: all 0.2s ease-in-out;
+  box-shadow: 0 1px 3px rgba(60, 64, 67, 0.3); */
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+/* Icon spacing */
+.map-btn .icon {
+  margin-right: 8px;
+  font-size: 16px;
+}
+
+/* Hover & Active states */
+.map-btn:hover {
+  background-color: #f8f9fa;
+  border-color: #1a73e8;
+  box-shadow: 0 4px 6px rgba(60, 64, 67, 0.15);
+  transform: translateY(-1px);
+}
+
+.map-btn:active {
+  background-color: #e8f0fe;
+  transform: translateY(0);
 }

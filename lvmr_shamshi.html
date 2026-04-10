@@ -168,12 +168,22 @@
                 <a class="nav-link" href="#about">About</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#facilities">Facilities</a>
+                <a
+                  class="nav-link active"
+                  href="./LVMR SHAMSHI CATALOGUE.pdf"
+                  target="_blank"
+                  >LVMR Catalogue</a
+                >
               </li>
-               <li class="nav-item">
-                <a class="nav-link" href="#featured-residencies">Featured Residences</a>
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  href="./Menu card.pdf"
+                  target="_blank"
+                  >Food Menu</a
+                >
               </li>
-             <li class="nav-item dropdown">
+              <li class="nav-item dropdown">
                 <a
                   class="nav-link dropdown-toggle"
                   href="#"
@@ -196,11 +206,12 @@
                   >
                 </div>
               </li>
-            
+
               <li class="nav-item cta">
                 <a class="nav-link" href="#contact-us"
                   ><span>Contact Now</span></a
                 >
+                <!-- https://wa.me/919876543210?text=${encodeURIComponent(%27Hi,%20I%20need%20help%27)}` -->
               </li>
             </ul>
           </div>
@@ -209,14 +220,15 @@
     </header>
     <!-- END header -->
 
-    <!-- <section
+    <!-- data-stellar-background-ratio="0.5" -->
+    <section
       class="site-hero overlay"
-      data-stellar-background-ratio="0.5"
       style="
         background-image: url(images/big_image_1.webp);
         background-size: cover;
         background-repeat: no-repeat;
-        background-position: 0% 0%;
+        background-attachment: scroll;
+        background-position: center;
       "
     >
       <div class="container">
@@ -225,65 +237,13 @@
         >
           <div class="col-md-12 text-center">
             <div class="mb-5 element-animate">
-              <h1>LVMR MIDTOWN</h1>
+              <h1>LVMR Shamshi | Premium</h1>
               <h1>Elevate Your Living Experience</h1>
               <p>PG (Paying Guest) For Working Professionals &amp; Students</p>
               <a href="#contact-us" class="btn btn-primary">Contact Now</a>
             </div>
           </div>
         </div>
-      </div>
-    </section> -->
-
-    <section class="site-hero home">
-      <div class="owl-carousel hero-carousel">
-        <div
-          class="item overlay"
-          style="background-image: url('./images/big_image_1.webp'); background-size: cover; background-position: center;"
-        >
-          <div class="content">
-            <h1>LVMR Shamshi | Premium</h1>
-            <h1>Elevate Your Living Experience</h1>
-            <p>PG (Paying Guest) For Working Professionals & Students</p>
-            <a href="./lvmr_shamshi.html" class="btn btn-primary">Visit Now</a>
-          </div>
-        </div>
-
-        <div
-          class="item overlay"
-          style="background-image: url('./images/big_image_2.webp'); background-size: cover;"
-        >
-          <div class="content">
-            <h1>LVMR Mohal | Premium</h1>
-            <h1>Comfort Meets Convenience</h1>
-            <p>Modern amenities for your perfect stay</p>
-            <a href="./lvmr_mohal.html" class="btn btn-primary">Visit Now</a>
-          </div>
-        </div>
-
-        <!-- <div
-          class="item overlay"
-          style="background-image: url('images/front3.webp')"
-        >
-          <div class="content">
-            <h1>LVMR MIDTOWN</h1>
-            <h1>Find Your Perfect Space</h1>
-            <p>Ideal for Students and Professionals</p>
-            <a href="#contact-us" class="btn btn-primary">Contact Now</a>
-          </div>
-        </div>
-
-        <div
-          class="item overlay"
-          style="background-image: url('images/front4.webp')"
-        >
-          <div class="content">
-            <h1>LVMR MIDTOWN</h1>
-            <h1>Comfort Meets Convenience</h1>
-            <p>Modern amenities for your perfect stay</p>
-            <a href="#contact-us" class="btn btn-primary">Contact Now</a>
-          </div>
-        </div> -->
       </div>
     </section>
 
@@ -412,7 +372,7 @@
             </a>
             </div>
           </div>
-          
+
           <!-- Power Backup -->
           <div class="col-md-3 col-sm-3 col-xs-6 width-50">
             <div class="service-details text-center">
@@ -460,8 +420,7 @@
               </a>
             </div>
           </div>
-
-
+          
         </div>
       </div>
     </section>
@@ -471,17 +430,7 @@
     <section class="site-section" id="about">
       <div class="container">
         <div class="row align-items-center">
-          <!-- <div class="col-md-4 mt-4 mt-md-0">
-            <img
-            class="site-section-img"
-            src="./images/logo.png"
-            alt="Image placeholder"
-            class="img-md-fluid"
-            style="max-width: 100%; background-color: black;"
-            />
-          </div>
-          <div class="col-md-1"></div> -->
-          <div class="col-md-12">
+          <div class="col-md-5">
             <div class="heading-wrap text-center element-animate">
               <h4 class="sub-heading">LVMR Group of residences</h4>
               <h2 class="heading">LVMR PG</h2>
@@ -511,69 +460,149 @@
               </p>
             </div>
           </div>
+          <div class="col-md-1"></div>
+          <div class="col-md-6 mt-4 mt-md-0">
+            <img
+              class="site-section-img"
+              src="images/big_image_1.webp"
+              alt="Image placeholder"
+              class="img-md-fluid"
+              style="max-width: 100%"
+            />
+          </div>
         </div>
       </div>
     </section>
     <!-- END section -->
 
-    <section id="featured-residencies" class="site-section bg-light">
+       <section class="site-section bg-light">
       <div class="container">
-        <div class="row mb-0 mb-md-5">
-          <div class="col-md-12 heading-wrap text-center">
-            <h4 class="sub-heading">Your Space. Your Story</h4>
-            <h2 class="heading">Featured Residences</h2>
-          </div>
+        <div class="mb-5 heading-wrap text-center element-animate">
+          <h4 class="sub-heading">our rooms photos</h4>
+          <h2 class="heading">Photo Gallery</h2>
         </div>
         <div class="row">
-          <!--gallery block--->
-          <section class="gallery-block gallery-front">
-            <div class="container">
-              <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                  <div class="gallery-image">
-                    <img
-                      class="img-responsive"
-                      src="./images/big_image_1.webp"
-                    />
-                    <div
-                      class="overlay cursor-pointer"
-                      onclick="window.location.href='./lvmr_shamshi.html'"
-                    >
-                      <a
-                        class="info pop example-image-link img-responsive"
-                        href="./lvmr_shamshi.html"
-                        data-lightbox="example-1"
-                        ><i class="fa fa-hand-pointer-o" aria-hidden="true"></i
-                      ></a>
-                      <p><a>LVMR Shamshi | Premium</a></p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                  <div class="gallery-image">
-                    <img
-                      class="img-responsive"
-                      src="./images/big_image_2.webp"
-                    />
-                    <div
-                      class="overlay cursor-pointer"
-                      onclick="window.location.href='./lvmr_mohal.html'"
-                    >
-                      <a
-                        class="info pop example-image-link img-responsive"
-                        href="./lvmr_mohal.html"
-                        data-lightbox="example-1"
-                        ><i class="fa fa-hand-pointer-o" aria-hidden="true"></i
-                      ></a>
-                      <p><a>LVMR Mohal | Premium</a></p>
-                    </div>
-                  </div>
-                </div>
-                
-              </div>
+          <div class="col-md-6 mb-4">
+            <div class="media d-block room mb-0">
+              <figure>
+                <img
+                  lazy="loading"
+                  src="./images/photo-gallery/shamshi/1.jpeg"
+                  alt="gallery"
+                  loading="lazy"
+                  class="img-fluid"
+                />
+              </figure>
             </div>
-          </section>
+          </div>
+          <div class="col-md-6 mb-4">
+            <div class="media d-block room mb-0">
+              <figure>
+                <img
+                  lazy="loading"
+                  src="./images/photo-gallery/shamshi/2.jpeg"
+                  alt="gallery"
+                  loading="lazy"
+                  class="img-fluid"
+                />
+              </figure>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="media d-block room mb-0">
+              <figure>
+                <img
+                  lazy="loading"
+                  src="./images/photo-gallery/shamshi/3.webp"
+                  alt="gallery"
+                  loading="lazy"
+                  class="img-fluid"
+                />
+              </figure>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-4">
+            <div class="media d-block room mb-0">
+              <figure>
+                <img
+                  lazy="loading"
+                  src="./images/photo-gallery/shamshi/4.webp"
+                  alt="gallery"
+                  loading="lazy"
+                  class="img-fluid"
+                />
+              </figure>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="media d-block room mb-0">
+              <figure>
+                <img
+                  lazy="loading"
+                  src="./images/photo-gallery/shamshi/5.jpeg"
+                  alt="gallery"
+                  loading="lazy"
+                  class="img-fluid"
+                />
+              </figure>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <div class="media d-block room mb-0">
+              <figure>
+                <img
+                  lazy="loading"
+                  src="./images/photo-gallery/shamshi/6.jpeg"
+                  alt="gallery"
+                  loading="lazy"
+                  class="img-fluid"
+                />
+              </figure>
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-4">
+            <div class="media d-block room mb-0">
+              <figure>
+                <img
+                  lazy="loading"
+                  src="./images/photo-gallery/shamshi/7.jpeg"
+                  alt="gallery"
+                  loading="lazy"
+                  class="img-fluid"
+                />
+              </figure>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <div class="media d-block room mb-0">
+              <figure>
+                <img
+                  lazy="loading"
+                  src="./images/photo-gallery/shamshi/8.jpeg"
+                  alt="gallery"
+                  loading="lazy"
+                  class="img-fluid"
+                />
+              </figure>
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-4">
+            <div class="media d-block room mb-0">
+              <figure>
+                <img
+                  lazy="loading"
+                  src="./images/photo-gallery/shamshi/9.jpeg"
+                  alt="gallery"
+                  loading="lazy"
+                  class="img-fluid"
+                />
+              </figure>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
@@ -621,7 +650,6 @@
             <h3>Our Location</h3>
             <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime, odio.</p>
           <p><a style="color: #000;" href="contactnow.html"> Contact Now &rarr; </a></p> -->
-          <!-- <div style="display: flex;gap: 10px; justify-content: center; align-items: center; max-width: 200px;" class="flex-wrap flex-lg-nowrap">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d108402.12962109884!2d77.05503381623753!3d31.891200679045816!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3904f70072736fff%3A0xdb9750b17a0688a6!2sLVMR%20Residences!5e0!3m2!1sen!2sin!4v1730270777256!5m2!1sen!2sin"
               style="border: 0"
@@ -629,23 +657,6 @@
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
             ></iframe>
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d108402.12962109884!2d77.05503381623753!3d31.891200679045816!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3904f70072736fff%3A0xdb9750b17a0688a6!2sLVMR%20Residences!5e0!3m2!1sen!2sin!4v1730270777256!5m2!1sen!2sin"
-              style="border: 0"
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-            ></iframe>
-          </div> -->
-           <div class="map-container">
-              <a href="https://www.google.com/maps/search/LVMR+Midtown+PG+Shamshi" target="_blank" class="map-btn">
-                  <span class="icon">📍</span> Shamshi View
-              </a>
-              <a href="https://www.google.com/maps/search/LVMR+Midtown+PG+Mohal" target="_blank" class="map-btn">
-                  <span class="icon">📍</span> Mohal View
-              </a>
-          </div>
-
             <!-- <form action="#" class="subscribe">
             <div class="form-group">
               <button type="submit"><span class="ion-ios-arrow-thin-right"></span></button>

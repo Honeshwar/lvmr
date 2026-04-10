@@ -12,6 +12,21 @@
     navText: ["&#10094;", "&#10095;"], // left/right arrows
     animateOut: "fadeOut",
     smartSpeed: 800,
+
+    // 👇 Fix for mobile scroll issue
+    touchDrag: false,
+    mouseDrag: false,
+
+    responsive: {
+      0: {
+        touchDrag: false,
+        mouseDrag: false,
+      },
+      768: {
+        touchDrag: true,
+        mouseDrag: true,
+      },
+    },
   });
 
   // bootstrap dropdown hover
@@ -190,7 +205,7 @@
           }, 100);
         }
       },
-      { offset: "95%" }
+      { offset: "95%" },
     );
   };
   contentWayPoint();
