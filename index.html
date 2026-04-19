@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="default">
   <head>
     <meta charset="utf-8" />
     <meta
@@ -119,7 +119,7 @@
     <link rel="shortcut icon" href="./images/logo.png" type="image/x-icon" />
 
     <link
-      href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900|Rubik:300,400,700"
+      href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900|Rubik:300,400,700&display=swap"
       rel="stylesheet"
     />
 
@@ -173,6 +173,14 @@
                <li class="nav-item">
                 <a class="nav-link" href="#featured-residencies">Featured Residences</a>
               </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  href="./FOOD MENU.pdf"
+                  target="_blank"
+                  >Food Menu</a
+                >
+              </li>
              <li class="nav-item dropdown">
                 <a
                   class="nav-link dropdown-toggle"
@@ -189,19 +197,29 @@
                   aria-labelledby="dropdown04"
                 >
                   <a class="dropdown-item" href="./lvmr_shamshi.html"
-                    >LVMR Shamshi | Premium</a
+                    >LVMR Shamshi | Premium PG</a
                   >
                   <a class="dropdown-item" href="lvmr_mohal.html"
-                    >LVMR Mohal | Premium</a
+                    >LVMR Mohal | Premium PG</a
+                  >
+                 <a class="dropdown-item" href="lvmr_kullu.html"
+                    >LVMR Kullu | Premium PG</a
                   >
                 </div>
               </li>
             
               <li class="nav-item cta">
-                <a class="nav-link" href="#contact-us"
-                  ><span>Contact Now</span></a
+                <a 
+                  class="nav-link whatsapp-btn"
+                  href="#"
+                  target="_blank"
+                  data-text="Hi, I have a query regarding LVMR PG accommodations. Could you please assist me?"
+                  data-label="Any query?"
                 >
+                  <span></span>
+                </a>
               </li>
+
             </ul>
           </div>
         </div>
@@ -242,7 +260,7 @@
           style="background-image: url('./images/big_image_1.webp'); background-size: cover; background-position: center;"
         >
           <div class="content">
-            <h1>LVMR Shamshi | Premium</h1>
+            <h1>LVMR Shamshi | Premium PG</h1>
             <h1>Elevate Your Living Experience</h1>
             <p>PG (Paying Guest) For Working Professionals & Students</p>
             <a href="./lvmr_shamshi.html" class="btn btn-primary">Visit Now</a>
@@ -254,7 +272,7 @@
           style="background-image: url('./images/big_image_2.webp'); background-size: cover;"
         >
           <div class="content">
-            <h1>LVMR Mohal | Premium</h1>
+            <h1>LVMR Mohal | Premium PG</h1>
             <h1>Comfort Meets Convenience</h1>
             <p>Modern amenities for your perfect stay</p>
             <a href="./lvmr_mohal.html" class="btn btn-primary">Visit Now</a>
@@ -303,6 +321,7 @@
                   alt="image"
                   class="img-responsive"
                   src="images/icons/wardrobe.png"
+                  loading="lazy"
                 />
                </div>
               <h4>
@@ -319,6 +338,7 @@
                   alt="image"
                   class="img-responsive"
                   src="images/icons/electrical.png"
+                  loading="lazy"
                 />
               </div>
               <h4>Geyser (Water Heater)</h4>
@@ -332,6 +352,7 @@
               <img
               alt="image"
                   class="img-responsive"
+                  loading="lazy"
                   src="images/icons/double-bed.png"
                 />
               </div>
@@ -349,6 +370,7 @@
                 <img
                   alt="image"
                   class="img-responsive"
+                  loading="lazy"
                   src="images/icons/wifi.png"
                 />
               </div>
@@ -363,6 +385,7 @@
                 <img
                   alt="image"
                   class="img-responsive"
+                  loading="lazy"
                   src="images/icons/balcony.png"
                 />
               </div>
@@ -377,6 +400,7 @@
                 <img
                   alt="image"
                   class="img-responsive"
+                  loading="lazy"
                   src="images/icons/public-toilet.png"
                 />
               </div>
@@ -390,6 +414,7 @@
                 <div class="service-image">
                 <img
                   alt="image"
+                  loading="lazy"
                   class="img-responsive"
                   src="images/icons/parking.png"
                 />
@@ -404,6 +429,7 @@
                 <div class="service-image">
                 <img
                   alt="image"
+                  loading="lazy"
                   class="img-responsive"
                   src="images/icons/cctv-camera.png"
                 />
@@ -420,6 +446,7 @@
                 <div class="service-image">
                   <img
                     alt="image"
+                    loading="lazy"
                     class="img-responsive"
                     src="images/icons/generator.png"
                   />
@@ -435,12 +462,13 @@
               <a>
                 <div class="service-image">
                   <img
+                    loading="lazy"
                     alt="image"
                     class="img-responsive"
                     src="images/icons/parking-car.png"
                   />
                 </div>
-                <h4 style="white-space: nowrap;">Car Parking (4-Wheeler)</h4>
+                <h4>Car Parking (As per availability)</h4>
               </a>
             </div>
           </div>
@@ -451,6 +479,7 @@
               <a>
                 <div class="service-image">
                   <img
+                    loading="lazy"
                     alt="image"
                     class="img-responsive"
                     src="images/icons/water-dispenser.png"
@@ -461,6 +490,22 @@
             </div>
           </div>
 
+          <!-- Laundry -->
+          <div class="col-md-3 col-sm-3 col-xs-6 width-50">
+            <div class="service-details text-center">
+              <a>
+                <div class="service-image">
+                  <img
+                    alt="image"
+                    loading="lazy" 
+                    class="img-responsive"
+                    src="images/icons/laundry.png"
+                  />
+                </div>
+                <h4>Laundry Service</h4>
+              </a>
+            </div>
+          </div>
 
         </div>
       </div>
@@ -505,8 +550,10 @@
                 <a
                   href="./LVMR SHAMSHI CATALOGUE.pdf"
                   target="_blank"
-                  class="btn btn-primary btn-sm"
-                  >View Room Prices</a
+                  class="btn btn-primary btn-sm whatsapp-btn"
+                  data-text="Hi, I have a query regarding LVMR PG accommodations. Could you please assist me?"
+                  data-label="Any query? Contact us on WhatsApp"
+                  ><span></span></a
                 >
               </p>
             </div>
@@ -532,6 +579,7 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                   <div class="gallery-image">
                     <img
+                      loading="lazy"
                       class="img-responsive"
                       src="./images/big_image_1.webp"
                     />
@@ -545,7 +593,7 @@
                         data-lightbox="example-1"
                         ><i class="fa fa-hand-pointer-o" aria-hidden="true"></i
                       ></a>
-                      <p><a>LVMR Shamshi | Premium</a></p>
+                      <p><a>LVMR Shamshi | Premium PG</a></p>
                     </div>
                   </div>
                 </div>
@@ -566,12 +614,35 @@
                         data-lightbox="example-1"
                         ><i class="fa fa-hand-pointer-o" aria-hidden="true"></i
                       ></a>
-                      <p><a>LVMR Mohal | Premium</a></p>
+                      <p><a>LVMR Mohal | Premium PG</a></p>
                     </div>
                   </div>
                 </div>
                 
               </div>
+              <div id="lvmr_kullu" class="row justify-content-center mt-md-4">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                  <div class="gallery-image">
+                    <img
+                      class="img-responsive"
+                      src="./images/bg_kullu.webp"
+                    />
+                    <div
+                      class="overlay cursor-pointer"
+                      onclick="window.location.href='./lvmr_kullu.html'"
+                    >
+                      <a
+                        class="info pop example-image-link img-responsive"
+                        href="./lvmr_kullu.html"
+                        data-lightbox="example-1"
+                        ><i class="fa fa-hand-pointer-o" aria-hidden="true"></i
+                      ></a>
+                      <p><a>LVMR Kullu | Premium PG</a></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </section>
         </div>
@@ -641,7 +712,7 @@
               <a href="https://www.google.com/maps/search/LVMR+Midtown+PG+Shamshi" target="_blank" class="map-btn">
                   <span class="icon">📍</span> Shamshi View
               </a>
-              <a href="https://www.google.com/maps/search/LVMR+Midtown+PG+Mohal" target="_blank" class="map-btn">
+              <a href="https://maps.app.goo.gl/PV2T3eHjM6GgFXhh8" target="_blank" class="map-btn">
                   <span class="icon">📍</span> Mohal View
               </a>
           </div>
@@ -670,6 +741,53 @@
     </footer>
     <!-- END footer -->
 
+    <!-- Social Sticky -->
+    <div class="social-sticky">
+  
+      <!-- WhatsApp -->
+      <a 
+        href="#"
+        target="_blank"
+        class="social-btn whatsapp whatsapp-btn"
+        data-text="Hi, I have a query regarding LVMR PG accommodations. Could you please assist me?"
+        title="Chat on WhatsApp"
+      >
+        <i class="fa fa-whatsapp"></i>
+      </a>
+
+      <!-- Facebook -->
+      <a 
+        href="https://www.facebook.com/share/17Tyocp1mo/" 
+        target="_blank"
+        class="social-btn facebook"
+        title="Facebook"
+      >
+        <i class="fa fa-facebook"></i>
+      </a>
+
+      <!-- Back to Top -->
+      <a 
+        href="#"
+        class="social-btn back-to-top"
+        title="Back to Top"
+        onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;"
+      >
+        <i class="fa fa-arrow-up"></i>
+      </a>
+
+      <!-- Instagram -->
+      <!-- <a 
+        href="https://www.instagram.com/lvmr_pg_bhuntar?igsh=MThneGdjc2plNW43aQ==" 
+        target="_blank"
+        class="social-btn instagram"
+        title="Instagram"
+      >
+        <i class="fa fa-instagram"></i>
+      </a> -->
+
+    </div>
+    <!-- END Social Sticky -->
+
     <!-- loader -->
     <div id="loader" class="show fullscreen">
       <svg class="circular" width="48px" height="48px">
@@ -695,17 +813,16 @@
       </svg>
     </div>
 
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/jquery-migrate-3.0.0.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/jquery.waypoints.min.js"></script>
-    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/jquery-3.2.1.min.js" defer></script>
+    <script src="js/jquery-migrate-3.0.0.js" defer></script>
+    <script src="js/popper.min.js" defer></script>
+    <script src="js/bootstrap.min.js" defer></script>
+    <script src="js/owl.carousel.min.js" defer></script>
+    <script src="js/jquery.waypoints.min.js" defer></script>
 
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/magnific-popup-options.js"></script>
+    <script src="js/jquery.magnific-popup.min.js" defer></script>
+    <script src="js/magnific-popup-options.js" defer></script>
 
-    <script src="js/main.js"></script>
+    <script src="js/main.js" defer></script>
   </body>
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="lvmr_shamshi">
   <head>
     <meta charset="utf-8" />
     <meta
@@ -119,7 +119,7 @@
     <link rel="shortcut icon" href="./images/logo.png" type="image/x-icon" />
 
     <link
-      href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900|Rubik:300,400,700"
+      href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900|Rubik:300,400,700&display=swap"
       rel="stylesheet"
     />
 
@@ -170,15 +170,7 @@
               <li class="nav-item">
                 <a
                   class="nav-link active"
-                  href="./LVMR SHAMSHI CATALOGUE.pdf"
-                  target="_blank"
-                  >LVMR Catalogue</a
-                >
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link active"
-                  href="./Menu card.pdf"
+                  href="./FOOD MENU.pdf"
                   target="_blank"
                   >Food Menu</a
                 >
@@ -199,20 +191,29 @@
                   aria-labelledby="dropdown04"
                 >
                   <a class="dropdown-item" href="./lvmr_shamshi.html"
-                    >LVMR Shamshi | Premium</a
+                    >LVMR Shamshi | Premium PG</a
                   >
                   <a class="dropdown-item" href="lvmr_mohal.html"
-                    >LVMR Mohal | Premium</a
+                    >LVMR Mohal | Premium PG</a
+                  >
+                 <a class="dropdown-item" href="lvmr_kullu.html"
+                    >LVMR Kullu | Premium PG</a
                   >
                 </div>
               </li>
 
-              <li class="nav-item cta">
-                <a class="nav-link" href="#contact-us"
-                  ><span>Contact Now</span></a
+               <li class="nav-item cta">
+                <a 
+                  class="nav-link whatsapp-btn"
+                  href="#"
+                  target="_blank"
+                  data-text="Hi, I am interested in LVMR Shamshi Premium PG. Could you please provide more details?."
+                  data-label="Contact us on WhatsApp"
                 >
-                <!-- https://wa.me/919876543210?text=${encodeURIComponent(%27Hi,%20I%20need%20help%27)}` -->
+                  <span></span>
+                </a>
               </li>
+
             </ul>
           </div>
         </div>
@@ -237,10 +238,16 @@
         >
           <div class="col-md-12 text-center">
             <div class="mb-5 element-animate">
-              <h1>LVMR Shamshi | Premium</h1>
+              <h1>LVMR Shamshi | Premium PG</h1>
               <h1>Elevate Your Living Experience</h1>
               <p>PG (Paying Guest) For Working Professionals &amp; Students</p>
-              <a href="#contact-us" class="btn btn-primary">Contact Now</a>
+              <a 
+                href="#" 
+                class="btn btn-primary whatsapp-btn"
+                target="_blank"
+                data-text="Hi, I am interested in LVMR Shamshi Premium PG. Could you please provide more details?."
+                data-label="Contact us on WhatsApp"
+              ><span></span></a>
             </div>
           </div>
         </div>
@@ -263,6 +270,7 @@
                   alt="image"
                   class="img-responsive"
                   src="images/icons/wardrobe.png"
+                  loading="lazy"
                 />
                </div>
               <h4>
@@ -279,6 +287,7 @@
                   alt="image"
                   class="img-responsive"
                   src="images/icons/electrical.png"
+                  loading="lazy"
                 />
               </div>
               <h4>Geyser (Water Heater)</h4>
@@ -292,6 +301,7 @@
               <img
               alt="image"
                   class="img-responsive"
+                  loading="lazy"
                   src="images/icons/double-bed.png"
                 />
               </div>
@@ -309,6 +319,7 @@
                 <img
                   alt="image"
                   class="img-responsive"
+                  loading="lazy"
                   src="images/icons/wifi.png"
                 />
               </div>
@@ -322,6 +333,7 @@
                 <div class="service-image">
                 <img
                   alt="image"
+                  loading="lazy"
                   class="img-responsive"
                   src="images/icons/balcony.png"
                 />
@@ -336,6 +348,7 @@
                 <div class="service-image">
                 <img
                   alt="image"
+                  loading="lazy"
                   class="img-responsive"
                   src="images/icons/public-toilet.png"
                 />
@@ -349,6 +362,7 @@
               <a>
                 <div class="service-image">
                 <img
+                  loading="lazy"
                   alt="image"
                   class="img-responsive"
                   src="images/icons/parking.png"
@@ -363,6 +377,7 @@
               <a>
                 <div class="service-image">
                 <img
+                  loading="lazy"
                   alt="image"
                   class="img-responsive"
                   src="images/icons/cctv-camera.png"
@@ -379,6 +394,7 @@
               <a>
                 <div class="service-image">
                   <img
+                    loading="lazy"
                     alt="image"
                     class="img-responsive"
                     src="images/icons/generator.png"
@@ -396,11 +412,12 @@
                 <div class="service-image">
                   <img
                     alt="image"
+                    loading="lazy" 
                     class="img-responsive"
                     src="images/icons/parking-car.png"
                   />
                 </div>
-                <h4 style="white-space: nowrap;">Car Parking (4-Wheeler)</h4>
+                <h4>Car Parking (As per availability)</h4>
               </a>
             </div>
           </div>
@@ -412,6 +429,7 @@
                 <div class="service-image">
                   <img
                     alt="image"
+                    loading="lazy" 
                     class="img-responsive"
                     src="images/icons/water-dispenser.png"
                   />
@@ -420,7 +438,24 @@
               </a>
             </div>
           </div>
-          
+
+          <!-- Laundry -->
+          <div class="col-md-3 col-sm-3 col-xs-6 width-50">
+            <div class="service-details text-center">
+              <a>
+                <div class="service-image">
+                  <img
+                    alt="image"
+                    loading="lazy" 
+                    class="img-responsive"
+                    src="images/icons/laundry.png"
+                  />
+                </div>
+                <h4>Laundry Service</h4>
+              </a>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
@@ -452,10 +487,12 @@
               </p>
               <p>
                 <a
-                  href="./LVMR SHAMSHI CATALOGUE.pdf"
+                  href="#"
                   target="_blank"
-                  class="btn btn-primary btn-sm"
-                  >View Room Prices</a
+                  class="btn btn-primary btn-sm whatsapp-btn"
+                  data-text="Hi, I am interested in LVMR Shamshi Premium PG. Please provide more details."
+                  data-label="Contact us on WhatsApp"
+                  ><span></span></a
                 >
               </p>
             </div>
@@ -469,6 +506,39 @@
               class="img-md-fluid"
               style="max-width: 100%"
             />
+          </div>
+        </div>
+        <div class="row align-items-center mt-5">
+          <div class="col-md-6 mt-4 mt-md-4">
+            <img
+              class="site-section-img"
+              src="images/near_by_spots.webp"
+              alt="Image placeholder"
+              class="img-md-fluid"
+              style="max-width: 100%"
+            />
+          </div>
+          <div class="col-md-1"></div>
+          <div class="col-md-5">
+            <div class="heading-wrap text-center element-animate">
+              <h4 class="sub-heading">Why Choose LVMR</h4>
+              <h2 class="heading">Premium Living</h2>
+              <p class="mb-3 mb-md-4">
+                Perfect for working professionals seeking the ideal blend of productivity and lifestyle. Our residences feature all essential amenities—high-speed Wi-Fi, comfortable workspace, power backup, and premium facilities—enabling seamless remote work while surrounded by nature's tranquility. Located in the heart of Himachal Pradesh's Kullu district, you're just minutes away from stunning nearby attractions and adventure spots. Experience the best of Himachal living in Kullu & Manali with our carefully curated properties that offer comfort, connectivity, and access to incredible places to visit. Whether you're pursuing career goals or embracing the digital nomad lifestyle, LVMR provides the perfect sanctuary to work, live, and explore.
+                <br />
+                Join the LVMR family today 🏡
+              </p>
+              <!-- <p>
+                <a
+                  href="#"
+                  target="_blank"
+                  class="btn btn-primary btn-sm whatsapp-btn"
+                  data-text="Hi, I am interested in LVMR Shamshi Premium PG. Please provide more details."
+                  data-label="Contact us on WhatsApp"
+                  ><span></span></a
+                >
+              </p> -->
+            </div>
           </div>
         </div>
       </div>
@@ -681,6 +751,53 @@
     </footer>
     <!-- END footer -->
 
+     <!-- Social Sticky -->
+    <div class="social-sticky">
+  
+      <!-- WhatsApp -->
+      <a 
+        href="#"
+        target="_blank"
+        class="social-btn whatsapp whatsapp-btn"
+        data-text="Hi, I am interested in LVMR PG. Please share details."
+        title="Chat on WhatsApp"
+      >
+        <i class="fa fa-whatsapp"></i>
+      </a>
+
+      <!-- Facebook -->
+      <a 
+        href="https://www.facebook.com/share/17Tyocp1mo/" 
+        target="_blank"
+        class="social-btn facebook"
+        title="Facebook"
+      >
+        <i class="fa fa-facebook"></i>
+      </a>
+
+      <!-- Instagram -->
+      <a 
+        href="https://www.instagram.com/lvmr_pg_bhuntar?igsh=MThneGdjc2plNW43aQ==" 
+        target="_blank"
+        class="social-btn instagram"
+        title="Instagram"
+      >
+        <i class="fa fa-instagram"></i>
+      </a>
+      
+      <!-- Back to Top -->
+      <a 
+        href="#"
+        class="social-btn back-to-top"
+        title="Back to Top"
+        onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;"
+      >
+        <i class="fa fa-arrow-up"></i>
+      </a>
+
+    </div>
+    <!-- END Social Sticky -->
+
     <!-- loader -->
     <div id="loader" class="show fullscreen">
       <svg class="circular" width="48px" height="48px">
@@ -706,17 +823,16 @@
       </svg>
     </div>
 
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/jquery-migrate-3.0.0.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/jquery.waypoints.min.js"></script>
-    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/jquery-3.2.1.min.js" defer></script>
+    <script src="js/jquery-migrate-3.0.0.js" defer></script>
+    <script src="js/popper.min.js" defer></script>
+    <script src="js/bootstrap.min.js" defer></script>
+    <script src="js/owl.carousel.min.js" defer></script>
+    <script src="js/jquery.waypoints.min.js" defer></script>
 
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/magnific-popup-options.js"></script>
+    <script src="js/jquery.magnific-popup.min.js" defer></script>
+    <script src="js/magnific-popup-options.js" defer></script>
 
-    <script src="js/main.js"></script>
+    <script src="js/main.js" defer></script>
   </body>
 </html>
