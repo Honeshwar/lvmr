@@ -12,6 +12,21 @@
     navText: ["&#10094;", "&#10095;"], // left/right arrows
     animateOut: "fadeOut",
     smartSpeed: 800,
+
+    // 👇 Fix for mobile scroll issue
+    touchDrag: false,
+    mouseDrag: false,
+
+    responsive: {
+      0: {
+        touchDrag: false,
+        mouseDrag: false,
+      },
+      768: {
+        touchDrag: true,
+        mouseDrag: true,
+      },
+    },
   });
 
   // bootstrap dropdown hover
@@ -26,8 +41,8 @@
   };
   loader();
 
-  // Stellar
-  $(window).stellar();
+  // Stellar - REMOVED: causes layout thrashing on scroll
+  // $(window).stellar();
 
   // $("nav .dropdown").hover(
   //   function () {
@@ -190,8 +205,42 @@
           }, 100);
         }
       },
-      { offset: "95%" }
+      { offset: "95%" },
     );
   };
   contentWayPoint();
 })(jQuery);
+
+// WhatsApp button functionality
+const whatsAppTexts = {
+  default: {
+    text: "Hi, I am interested in your PG accommodation. Could you please provide more details?",
+    label: "Any query? Contact us on WhatsApp",
+  },
+  lvmr_shamshi: {
+    text: "Hi, I am interested in LVMR Shamshi Premium PG. Could you please provide more details?",
+    label: "Contact us on WhatsApp",
+  },
+  lvmr_mohal: {
+    text: "Hi, I am interested in LVMR Mohal Premium PG. Could you please provide more details?",
+    label: "Contact us on WhatsApp",
+  },
+  lvmr_kullu: {
+    text: "Hi, I am interested in LVMR Kullu Premium PG. Could you please provide more details?",
+    label: "Contact us on WhatsApp",
+  },
+};
+
+const pageId = document.documentElement.id;
+const { text, label } = whatsAppTexts[pageId] || whatsAppTexts.default;
+const btns = document.querySelectorAll(".whatsapp-btn");
+const phone = "918278778256";
+btns.forEach((button) => {
+  const message = encodeURIComponent(text);
+  button.href = `https://wa.me/${phone}?text=${message}`;
+
+  const labelElement = button.querySelector("span");
+  if (labelElement) {
+    labelElement.innerText = label;
+  }
+});

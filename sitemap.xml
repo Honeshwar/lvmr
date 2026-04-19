@@ -4,34 +4,38 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+<!-- LVMR PG Accommodations - Updated April 2026 -->
 
-
+<!-- Home Page -->
 <url>
-  <loc>https://lvmr.in/</loc>
-  <lastmod>2025-05-24T14:14:26+00:00</lastmod>
+  <loc>https://www.lvmin.in/</loc>
+  <lastmod>2026-04-19</lastmod>
+  <changefreq>weekly</changefreq>
   <priority>1.00</priority>
 </url>
+
+<!-- LVMR Shamshi - Premium PG for Working Professionals -->
 <url>
-  <loc>https://lvmr.in/midtown</loc>
-  <lastmod>2025-05-24T14:14:26+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://lvmr.in/singleroom</loc>
-  <lastmod>2025-05-24T14:14:26+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://lvmr.in/doubleroom</loc>
-  <lastmod>2025-05-24T14:14:26+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://lvmr.in/tripleroom</loc>
-  <lastmod>2025-05-24T14:14:26+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://www.lvmin.in/lvmr_shamshi.html</loc>
+  <lastmod>2026-04-19</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.90</priority>
 </url>
 
+<!-- LVMR Mohal - Student PG and Hostel -->
+<url>
+  <loc>https://www.lvmin.in/lvmr_mohal.html</loc>
+  <lastmod>2026-04-19</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.90</priority>
+</url>
+
+<!-- LVMR Kullu - Coming Soon -->
+<url>
+  <loc>https://www.lvmin.in/lvmr_kullu.html</loc>
+  <lastmod>2026-04-19</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.85</priority>
+</url>
 
 </urlset>
