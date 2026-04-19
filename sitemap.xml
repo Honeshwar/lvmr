@@ -8,31 +8,31 @@
 
 <!-- Home Page -->
 <url>
-  <loc>https://www.lvmin.in/</loc>
+  <loc>https://lvmr.in/</loc>
   <lastmod>2026-04-19</lastmod>
   <changefreq>weekly</changefreq>
   <priority>1.00</priority>
 </url>
 
-<!-- LVMR Shamshi - Premium PG for Working Professionals -->
+<!-- Shamshi -->
 <url>
-  <loc>https://www.lvmin.in/lvmr_shamshi.html</loc>
+  <loc>https://lvmr.in/lvmr_shamshi.html</loc>
   <lastmod>2026-04-19</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.90</priority>
 </url>
 
-<!-- LVMR Mohal - Student PG and Hostel -->
+<!-- Mohal -->
 <url>
-  <loc>https://www.lvmin.in/lvmr_mohal.html</loc>
+  <loc>https://lvmr.in/lvmr_mohal.html</loc>
   <lastmod>2026-04-19</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.90</priority>
 </url>
 
-<!-- LVMR Kullu - Coming Soon -->
+<!-- Kullu -->
 <url>
-  <loc>https://www.lvmin.in/lvmr_kullu.html</loc>
+  <loc>https://lvmr.in/lvmr_kullu.html</loc>
   <lastmod>2026-04-19</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.85</priority>
