@@ -209,6 +209,26 @@
     );
   };
   contentWayPoint();
+
+  $(".testimonial-slider").owlCarousel({
+    loop: true,
+    autoplay: true,
+    margin: 20,
+    nav: false,
+    dots: true,
+    autoplayHoverPause: true,
+    responsive: {
+      0: {
+        items: 1,
+      },
+      768: {
+        items: 2,
+      },
+      1000: {
+        items: 3,
+      },
+    },
+  });
 })(jQuery);
 
 // WhatsApp button functionality
