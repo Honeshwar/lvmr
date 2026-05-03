@@ -1,10 +1,12 @@
-body {
+html, body {
   background: #fff;
   font-family: "Rubik", arial, sans-serif;
   font-weight: 300;
   font-size: 15px;
   line-height: 1.8;
   color: #6c757d;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 a {
@@ -2199,9 +2201,14 @@ textarea.form-control {
 /* Mobile */
 @media (max-width: 768px) {
   .social-btn {
-    width: 45px;
-    height: 45px;
-    font-size: 18px;
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+  .social-sticky {
+    right: 10px;
+    bottom: 15px;
+    gap: 8px;
   }
 }
 
@@ -2220,6 +2227,13 @@ textarea.form-control {
   text-transform: uppercase;
   font-size: 12px;
   letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+}
+
+.calculator-section .form-group label i {
+  color: #b99365;
+  font-size: 16px;
 }
 
 .calculator-section .form-control {
@@ -2310,11 +2324,68 @@ textarea.form-control {
 
 @media (max-width: 767.98px) {
   .calculator-card {
-    padding: 20px;
+    padding: 20px 25px 45px 25px; /* Increased inline and bottom */
+    margin-left: 0;
+    margin-right: 0;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  }
+
+  .custom-select-trigger {
+    padding: 0 35px 0 12px !important; /* Decreased inline padding */
+    font-size: 12px !important;
+  }
+
+  .calculator-section .form-group {
+    margin-bottom: 12px;
+  }
+
+  .calculator-section .form-group label {
+    font-size: 10px;
+    margin-bottom: 5px;
+  }
+
+  .calculator-section .form-control {
+    height: 42px;
+    font-size: 13px;
   }
 
   .details-box {
-    margin-top: 30px;
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 10px;
+  }
+
+  .details-box h3 {
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+
+  .facility-list {
+    margin-bottom: 15px;
+  }
+
+  .facility-list li {
+    font-size: 12px;
+    margin-bottom: 5px;
+  }
+
+  .price-display {
+    padding: 15px;
+  }
+
+  .price-amount {
+    font-size: 28px;
+  }
+
+  .price-label {
+    font-size: 11px;
+  }
+
+  .calculator-section .btn-block {
+    padding: 10px;
+    font-size: 13px;
+    letter-spacing: 1px;
   }
 }
 
@@ -2323,6 +2394,11 @@ textarea.form-control {
 .testimonial-section {
   padding: 105px 0;
   background: #fff;
+  overflow: visible !important;
+}
+
+.testimonial-section .container {
+  overflow: visible !important;
 }
 
 .testimonial-card {
@@ -2333,6 +2409,9 @@ textarea.form-control {
   margin: 15px;
   border: 1px solid #f0f0f0;
   transition: transform 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .testimonial-card:hover {
@@ -2367,6 +2446,10 @@ textarea.form-control {
 .rating {
   color: #ffc107;
   font-size: 12px;
+}
+
+.testimonial-content {
+  flex-grow: 1;
 }
 
 .testimonial-content p {
@@ -2446,6 +2529,105 @@ textarea.form-control {
   position: relative;
 }
 
+/* Force equal heights in Owl Carousel */
+.testimonial-slider .owl-stage {
+  display: flex !important;
+  padding-bottom: 25px !important; /* Extra space for bottom border and shadow */
+  margin-top: 10px;
+}
+
+.testimonial-slider .owl-item {
+  display: flex !important;
+  flex: 1 0 auto;
+}
+
+.testimonial-slider .owl-dots {
+  position: relative !important;
+  bottom: 0 !important;
+  margin-top: 30px !important;
+  display: flex !important;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.testimonial-slider .owl-dots .owl-dot {
+  width: 8px !important;
+  height: 8px !important;
+  margin: 4px !important;
+  border-radius: 50%;
+  background: #e6e6e6 !important;
+  border: none !important;
+  padding: 0 !important;
+  transition: all 0.3s ease;
+}
+
+.testimonial-slider .owl-dots .owl-dot.active {
+  background: #b99365 !important;
+  width: 20px !important; /* Elongated active dot for modern look */
+  border-radius: 4px !important;
+}
+
+.testimonial-slider .owl-nav {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.testimonial-slider .owl-nav .owl-prev,
+.testimonial-slider .owl-nav .owl-next {
+  position: absolute;
+  pointer-events: auto;
+  background: #fff !important;
+  color: #b99365 !important;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  font-size: 20px;
+  margin-top: 0 !important;
+  top: 0 !important;
+}
+
+.testimonial-slider .owl-nav .owl-prev:hover,
+.testimonial-slider .owl-nav .owl-next:hover {
+  background: #b99365 !important;
+  color: #fff !important;
+  box-shadow: 0 6px 20px rgba(185, 147, 101, 0.3);
+}
+
+.testimonial-slider .owl-nav .owl-prev {
+  left: -80px !important;
+}
+
+.testimonial-slider .owl-nav .owl-next {
+  right: -80px !important;
+}
+
+@media (max-width: 1300px) {
+  .testimonial-slider .owl-nav .owl-prev {
+    left: -40px !important;
+  }
+  .testimonial-slider .owl-nav .owl-next {
+    right: -40px !important;
+  }
+}
+
+@media (max-width: 1150px) {
+  .testimonial-slider .owl-nav {
+    display: none !important;
+  }
+}
+
 
 /* Further Testimonial Refinements */
 .testimonial-section .heading {
@@ -2470,12 +2652,15 @@ textarea.form-control {
   border-radius: 8px;
   background-color: #fcfcfc;
   padding: 0 40px 0 20px;
-  display: flex;
-  align-items: center;
+  display: block; /* Changed from flex to block for ellipsis */
+  line-height: 50px; /* Center text vertically */
   cursor: pointer;
   position: relative;
   transition: all 0.3s ease;
   color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .custom-select-trigger:after {
@@ -2519,11 +2704,14 @@ textarea.form-control {
 }
 
 .custom-option {
-  padding: 12px 20px;
+  padding: 12px 15px;
   cursor: pointer;
   font-size: 14px;
   color: #333;
   transition: all 0.2s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .custom-option:hover {
@@ -2538,5 +2726,9 @@ textarea.form-control {
 }
 
 .custom-select-wrapper select {
+  display: none !important;
+}
+
+custom-select-wrapper select {
   display: none !important;
 }

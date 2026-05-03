@@ -214,18 +214,22 @@
     loop: true,
     autoplay: true,
     margin: 20,
-    nav: false,
+    nav: true,
     dots: true,
     autoplayHoverPause: true,
+    navText: ["<span class='ion-chevron-left'></span>", "<span class='ion-chevron-right'></span>"],
     responsive: {
       0: {
         items: 1,
+        nav: false
       },
       768: {
         items: 2,
+        nav: true
       },
       1000: {
         items: 3,
+        nav: true
       },
     },
   });

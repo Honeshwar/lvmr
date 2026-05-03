@@ -84,42 +84,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const prices = {
         shamshi: {
-            single: { monthly: { 2: 10000, 3: 12000 }, weekly: 4500, 'two-week': 6500 },
-            queen: { monthly: { 2: 11500, 3: 13000 }, weekly: 5500, 'two-week': 7500 },
-            double: { monthly: { 2: 8000, 3: 9500 }, weekly: 3500, 'two-week': 5500 },
-            bunk: { monthly: { 2: 8000, 3: 8000 }, weekly: 3500, 'two-week': 6000 }, // Only 2 meals usually for bunk
-            premium: { monthly: { 2: 20000, 3: 20000 }, weekly: 10000, 'two-week': 13500 } // Only 3 meals usually
+            'single-3-6': { monthly: { 2: 10000, 3: 12000 }, weekly: 4500, 'two-week': 6500 },
+            'double-5-6': { monthly: { 2: 11500, 3: 13000 }, weekly: 5500, 'two-week': 7500 }
         },
         mohal: {
-            bunk: { monthly: { 2: 8000, 3: 8000 }, weekly: 3500, 'two-week': 6000 }
+            bunk: { monthly: { 2: 9000, 3: 11000 }, weekly: 3500, 'two-week': 6000 }
         }
     };
 
     function updateCalculator() {
         const location = locationSelect.value;
         const duration = durationSelect.value;
+        const meals = mealsSelect.value;
+        
+        const locationName = locationSelect.options[locationSelect.selectedIndex].text;
+        const durationName = durationSelect.options[durationSelect.selectedIndex].text;
+        const mealsName = mealsSelect.options[mealsSelect.selectedIndex].text;
         
         if (location === 'mohal') {
             roomTypeGroup.style.display = 'none';
-            mealGroup.style.display = 'none';
+            mealGroup.style.display = 'block';
             shamshiInfo.style.display = 'none';
             mohalInfo.style.display = 'block';
             
-            let price = prices.mohal.bunk[duration];
-            if (duration === 'monthly') price = price[2];
-            
-            calculatedPrice.textContent = '₹' + price.toLocaleString();
-            updateWhatsAppLink('Mohal PG Bunk Stay', duration, price);
-        } else {
-            roomTypeGroup.style.display = 'block';
-            mealGroup.style.display = 'block';
-            shamshiInfo.style.display = 'block';
-            mohalInfo.style.display = 'none';
-            
-            const roomType = roomTypeSelect.value;
-            const meals = mealsSelect.value;
-            
-            let priceData = prices.shamshi[roomType];
+            let priceData = prices.mohal.bunk;
             let price = 0;
             
             if (duration === 'monthly') {
@@ -129,12 +117,43 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             calculatedPrice.textContent = '₹' + price.toLocaleString();
-            updateWhatsAppLink('Shamshi PG ' + roomTypeSelect.options[roomTypeSelect.selectedIndex].text, duration, price);
+            updateWhatsAppLink(locationName, 'Premium Bunk Stay', durationName, mealsName, price);
+        } else {
+            roomTypeGroup.style.display = 'block';
+            mealGroup.style.display = 'block';
+            shamshiInfo.style.display = 'block';
+            mohalInfo.style.display = 'none';
+            
+            const roomType = roomTypeSelect.value;
+            const roomTypeName = roomTypeSelect.options[roomTypeSelect.selectedIndex].text;
+            
+            let priceData = prices.shamshi[roomType];
+            if (!priceData) {
+                // Fallback or handle if options mismatch
+                priceData = prices.shamshi['single-3-6'];
+            }
+            
+            let price = 0;
+            
+            if (duration === 'monthly') {
+                price = priceData.monthly[meals];
+            } else {
+                price = priceData[duration];
+            }
+            
+            calculatedPrice.textContent = '₹' + price.toLocaleString();
+            updateWhatsAppLink(locationName, roomTypeName, durationName, mealsName, price);
         }
     }
 
-    function updateWhatsAppLink(type, duration, price) {
-        const text = `Hi, I am interested in ${type} for ${duration} duration. The calculated prize is ₹${price}. Can you please help me with the booking?`;
+    function updateWhatsAppLink(location, roomType, duration, meals, price) {
+        const text = `*New Booking Inquiry - LVMR PG*\n\n` +
+                     `*Location:* ${location}\n` +
+                     `*Room Type:* ${roomType}\n` +
+                     `*Duration:* ${duration}\n` +
+                     `*Meals:* ${meals}\n` +
+                     `*Total Prize:* ₹${price.toLocaleString()}\n\n` +
+                     `Can you please help me with the booking?`;
         const encodedText = encodeURIComponent(text);
         calcWhatsapp.href = `https://wa.me/918580788847?text=${encodedText}`;
     }
