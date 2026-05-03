@@ -73,6 +73,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const locationSelect = document.getElementById('location-select');
     const roomTypeGroup = document.getElementById('room-type-group');
     const roomTypeSelect = document.getElementById('room-type');
+    const sharingTypeGroup = document.getElementById('sharing-type-group');
+    const sharingTypeSelect = document.getElementById('sharing-type');
+    const sharingNote = document.getElementById('sharing-note');
     const durationSelect = document.getElementById('duration-select');
     const mealGroup = document.getElementById('meal-group');
     const mealsSelect = document.getElementById('meals-select');
@@ -85,10 +88,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const prices = {
         shamshi: {
             'single-3-6': { monthly: { 2: 10000, 3: 12000 }, weekly: 4500, 'two-week': 6500 },
-            'double-5-6': { monthly: { 2: 11500, 3: 13000 }, weekly: 5500, 'two-week': 7500 }
+            'premium': { monthly: { 2: 18000, 3: 20000 }, weekly: 8000, 'two-week': 13000 },
+            'sharing': {
+                'double': { monthly: { 2: 8500, 3: 10000 }, weekly: 4000, 'two-week': 6000 },
+                'triple': { monthly: { 2: 8000, 3: 9500 }, weekly: 3500, 'two-week': 5500 }
+            }
         },
         mohal: {
-            bunk: { monthly: { 2: 9000, 3: 11000 }, weekly: 3500, 'two-week': 6000 }
+            bunk: { monthly: { 2: 9000, 3: 10000 }, weekly: 3500, 'two-week': 6000 }
         }
     };
 
@@ -96,13 +103,25 @@ document.addEventListener('DOMContentLoaded', function() {
         const location = locationSelect.value;
         const duration = durationSelect.value;
         const meals = mealsSelect.value;
+        const roomType = roomTypeSelect.value;
         
         const locationName = locationSelect.options[locationSelect.selectedIndex].text;
         const durationName = durationSelect.options[durationSelect.selectedIndex].text;
         const mealsName = mealsSelect.options[mealsSelect.selectedIndex].text;
         
+        // Handle Sharing Note and Sharing Type Visibility
+        if (location === 'shamshi' && roomType === 'sharing') {
+            sharingTypeGroup.style.display = 'block';
+            sharingNote.style.display = 'block';
+        } else {
+            sharingTypeGroup.style.display = 'none';
+            sharingNote.style.display = 'none';
+        }
+
         if (location === 'mohal') {
             roomTypeGroup.style.display = 'none';
+            sharingTypeGroup.style.display = 'none';
+            sharingNote.style.display = 'none';
             mealGroup.style.display = 'block';
             shamshiInfo.style.display = 'none';
             mohalInfo.style.display = 'block';
@@ -124,17 +143,24 @@ document.addEventListener('DOMContentLoaded', function() {
             shamshiInfo.style.display = 'block';
             mohalInfo.style.display = 'none';
             
-            const roomType = roomTypeSelect.value;
-            const roomTypeName = roomTypeSelect.options[roomTypeSelect.selectedIndex].text;
-            
-            let priceData = prices.shamshi[roomType];
+            let roomTypeName = roomTypeSelect.options[roomTypeSelect.selectedIndex].text;
+            let priceData;
+
+            if (roomType === 'sharing') {
+                const sharingType = sharingTypeSelect.value;
+                const sharingTypeName = sharingTypeSelect.options[sharingTypeSelect.selectedIndex].text;
+                roomTypeName = `${roomTypeName} (${sharingTypeName})`;
+                priceData = prices.shamshi.sharing[sharingType];
+            } else {
+                priceData = prices.shamshi[roomType];
+            }
+
             if (!priceData) {
-                // Fallback or handle if options mismatch
+                // Fallback
                 priceData = prices.shamshi['single-3-6'];
             }
             
             let price = 0;
-            
             if (duration === 'monthly') {
                 price = priceData.monthly[meals];
             } else {
@@ -160,6 +186,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     locationSelect.addEventListener('change', updateCalculator);
     roomTypeSelect.addEventListener('change', updateCalculator);
+    sharingTypeSelect.addEventListener('change', updateCalculator);
     durationSelect.addEventListener('change', updateCalculator);
     mealsSelect.addEventListener('change', updateCalculator);
 

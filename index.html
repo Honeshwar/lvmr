@@ -300,8 +300,22 @@
                   <label for="room-type"><i class="ion-ios-home mr-2"></i>Accommodation Type</label>
                   <select id="room-type" class="form-control">
                     <option value="single-3-6">Single Bed or Standard Bed (3ft × 6ft)</option>
-                    <option value="double-5-6">Double Bed or Queen Size Bed (5ft × 6ft)</option>
+                    <option value="premium">Premium Room (Best Views & Space)</option>
+                    <option value="sharing">Sharing Room (Bring your partner)</option>
                   </select>
+                </div>
+
+                <div id="sharing-type-group" class="form-group" style="display: none;">
+                  <label for="sharing-type"><i class="ion-ios-people mr-2"></i>Sharing Type</label>
+                  <select id="sharing-type" class="form-control">
+                    <option value="double">Double Sharing (2 People)</option>
+                    <option value="triple">Triple Sharing (3 People)</option>
+                  </select>
+                </div>
+
+                <div id="sharing-note" class="alert alert-warning sharing-highlight" style="display: none;">
+                  <i class="ion-ios-information-outline mr-2"></i>
+                  <strong>Important:</strong> You must arrange your own roommate.
                 </div>
 
                 <div class="form-group">
@@ -330,7 +344,7 @@
                       <li><i class="fa fa-check"></i> Private & Shared Rooms</li>
                       <li><i class="fa fa-check"></i> Attached Washroom</li>
                       <li><i class="fa fa-check"></i> Personal Balcony</li>
-                      <li><i class="fa fa-check"></i> High-speed Wi-Fi (10mbps)</li>
+                      <li><i class="fa fa-check"></i> High-speed Wi-Fi (100mbps)</li>
                       <li><i class="fa fa-check"></i> Laptop Chair & Table</li>
                       <li><i class="fa fa-check"></i> Complete Bedding</li>
                     </ul>
@@ -1514,6 +1528,7 @@
   <script src="js/magnific-popup-options.js" defer></script>
 
   <script src="js/main.js" defer></script>
+  <script src="js/bot.js" defer></script>
   <script src="js/calculator.js" defer></script>
   <script src="js/reviews.js" defer></script>
 </body>
