@@ -3091,6 +3091,33 @@ body.chat-expanded:before {
         display: none; /* Hide on very small screens to avoid clutter */
     }
 }
+/* Mobile Video Section */
+.mobile-video-section {
+    display: none;
+    background: #fff; /* Changed to white to match other sections */
+    padding: 40px 15px;
+}
 
+.video-section-title {
+    text-align: center;
+    font-size: 28px; /* Reduced for single-line display on mobile */
+    font-weight: 400;
+    margin-bottom: 25px;
+    color: #000;
+}
+
+
+
+@media (max-width: 991px) {
+    .mobile-video-section {
+        display: block;
+    }
+    
+    .mobile-video-section .video-wrapper {
+        border-radius: 12px; /* Add back rounded corners since we have padding now */
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        border: 1px solid rgba(0,0,0,0.05);
+    }
+}
 
 
