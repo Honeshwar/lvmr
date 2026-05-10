@@ -183,19 +183,19 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="bot-container">
             <div class="chat-window" id="chatWindow">
                 <div class="chat-header">
-                    <h3>LVMR Assistant</h3>
+                    <h3>Himani</h3>
                     <div class="header-actions">
                         <i class="ion-android-expand header-icon" id="toggleFullScreen" title="Full Screen"></i>
                         <i class="ion-close header-icon" id="closeChat" title="Close"></i>
                     </div>
                 </div>
                 <div class="chat-body" id="chatBody">
-                    <div class="bot-msg">Namaste! 🙏 I'm your LVMR Assistant. How can I help you today? Please select a category:</div>
+                    <div class="bot-msg">Hi, I am Himani. Namaste! 🙏 How can I help you today? Please select a category:</div>
                     <div class="category-list" id="categoryList"></div>
                 </div>
             </div>
             <div class="bot-avatar-wrapper" id="botTrigger">
-                <div class="bot-hint">Hi! Ask LVMR Bot</div>
+                <div class="bot-hint">Hi! Ask Himani</div>
                 <video autoplay loop muted playsinline>
                     <source src="images/v.mp4" type="video/mp4">
                 </video>
