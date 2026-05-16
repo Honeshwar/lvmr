@@ -1,4 +1,37 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const locationSelect = document.getElementById('location-select');
+    const roomTypeSelect = document.getElementById('room-type');
+    
+    function populateRoomTypeOptions(loc) {
+        if (!roomTypeSelect) return;
+        const currentVal = roomTypeSelect.value;
+        if (loc === 'mohal') {
+            roomTypeSelect.innerHTML = `
+                <option value="single">Single Room</option>
+                <option value="sharing">Double Sharing</option>
+                <option value="bunk">Bunk Bed</option>
+            `;
+        } else {
+            roomTypeSelect.innerHTML = `
+                <option value="single">Single Room</option>
+                <option value="premium">Premium Room (Best Views & Space)</option>
+                <option value="sharing">Sharing Room (Bring your partner)</option>
+            `;
+        }
+        
+        // Try to keep previous selection
+        const optionExists = Array.from(roomTypeSelect.options).some(opt => opt.value === currentVal);
+        if (optionExists) {
+            roomTypeSelect.value = currentVal;
+        } else {
+            roomTypeSelect.selectedIndex = 0;
+        }
+    }
+
+    if (locationSelect) {
+        populateRoomTypeOptions(locationSelect.value);
+    }
+
     // Custom Dropdown Logic
     function convertSelectsToCustom() {
         const selects = document.querySelectorAll('.calculator-section select');
@@ -13,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const trigger = document.createElement('div');
             trigger.className = 'custom-select-trigger';
-            trigger.textContent = select.options[select.selectedIndex].text;
+            trigger.textContent = select.options[select.selectedIndex] ? select.options[select.selectedIndex].text : '';
             wrapper.appendChild(trigger);
             
             const optionsContainer = document.createElement('div');
@@ -58,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Sync if native select changes from outside
             select.addEventListener('change', function() {
-                trigger.textContent = select.options[select.selectedIndex].text;
+                trigger.textContent = select.options[select.selectedIndex] ? select.options[select.selectedIndex].text : '';
                 buildOptions();
             });
         });
@@ -70,9 +103,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     convertSelectsToCustom();
 
-    const locationSelect = document.getElementById('location-select');
     const roomTypeGroup = document.getElementById('room-type-group');
-    const roomTypeSelect = document.getElementById('room-type');
+    const bedTypeGroup = document.getElementById('bed-type-group');
+    const bedTypeSelect = document.getElementById('bed-type');
     const sharingTypeGroup = document.getElementById('sharing-type-group');
     const sharingTypeSelect = document.getElementById('sharing-type');
     const sharingNote = document.getElementById('sharing-note');
@@ -87,15 +120,52 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const prices = {
         shamshi: {
-            'single-3-6': { monthly: { 2: 10000, 3: 12000 }, weekly: 4500, 'two-week': 6500 },
-            'premium': { monthly: { 2: 18000, 3: 20000 }, weekly: 8000, 'two-week': 13000 },
+            'single': {
+                'standard': { 
+                    monthly: { 2: 10000, 3: 12000 }, 
+                    weekly: { 2: 4500, 3: 6000 }, 
+                    'two-week': { 2: 6500, 3: 8000 } 
+                },
+                'queen': { 
+                    monthly: { 2: 11500, 3: 13000 }, 
+                    weekly: { 2: 5000, 3: 6500 }, 
+                    'two-week': { 2: 7500, 3: 9000 } 
+                }
+            },
+            'premium': { 
+                monthly: { 2: 18000, 3: 20000 }, 
+                weekly: { 2: 8000, 3: 10000 }, 
+                'two-week': { 2: 13000, 3: 15000 } 
+            },
             'sharing': {
-                'double': { monthly: { 2: 8500, 3: 10000 }, weekly: 4000, 'two-week': 6000 },
-                'triple': { monthly: { 2: 8000, 3: 9500 }, weekly: 3500, 'two-week': 5500 }
+                'double': { 
+                    monthly: { 2: 8500, 3: 10000 }, 
+                    weekly: { 2: 4000, 3: 5500 }, 
+                    'two-week': { 2: 6000, 3: 7500 } 
+                },
+                'triple': { 
+                    monthly: { 2: 8000, 3: 9500 }, 
+                    weekly: { 2: 3500, 3: 5000 }, 
+                    'two-week': { 2: 5500, 3: 7000 } 
+                }
             }
         },
         mohal: {
-            bunk: { monthly: { 2: 9000, 3: 10000 }, weekly: 3500, 'two-week': 6000 }
+            'single': { 
+                monthly: { 2: 9500, 3: 11500 }, 
+                weekly: { 2: 4000, 3: 5500 }, 
+                'two-week': { 2: 6000, 3: 7500 } 
+            },
+            'sharing': { 
+                monthly: { 2: 8000, 3: 9500 }, 
+                weekly: { 2: 3500, 3: 5000 }, 
+                'two-week': { 2: 5500, 3: 7000 } 
+            },
+            'bunk': { 
+                monthly: { 2: 8000, 3: 9000 }, 
+                weekly: { 2: 4000, 3: 5500 }, 
+                'two-week': { 2: 6000, 3: 7500 } 
+            }
         }
     };
 
@@ -109,7 +179,14 @@ document.addEventListener('DOMContentLoaded', function() {
         const durationName = durationSelect.options[durationSelect.selectedIndex].text;
         const mealsName = mealsSelect.options[mealsSelect.selectedIndex].text;
         
-        // Handle Sharing Note and Sharing Type Visibility
+        // Handle Bed Type Visibility for Shamshi Single Room
+        if (location === 'shamshi' && roomType === 'single') {
+            bedTypeGroup.style.display = 'block';
+        } else {
+            bedTypeGroup.style.display = 'none';
+        }
+
+        // Handle Sharing Note and Sharing Type Visibility for Shamshi Sharing Room
         if (location === 'shamshi' && roomType === 'sharing') {
             sharingTypeGroup.style.display = 'block';
             sharingNote.style.display = 'block';
@@ -119,24 +196,25 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         if (location === 'mohal') {
-            roomTypeGroup.style.display = 'none';
-            sharingTypeGroup.style.display = 'none';
-            sharingNote.style.display = 'none';
+            roomTypeGroup.style.display = 'block';
             mealGroup.style.display = 'block';
             shamshiInfo.style.display = 'none';
             mohalInfo.style.display = 'block';
             
-            let priceData = prices.mohal.bunk;
-            let price = 0;
+            let roomTypeName = roomTypeSelect.options[roomTypeSelect.selectedIndex].text;
+            let priceData = prices.mohal[roomType];
             
-            if (duration === 'monthly') {
-                price = priceData.monthly[meals];
+            if (!priceData) priceData = prices.mohal.bunk; // Fallback
+            
+            let price = 0;
+            if (priceData[duration] && typeof priceData[duration] === 'object') {
+                price = priceData[duration][meals] || priceData[duration][2];
             } else {
-                price = priceData[duration];
+                price = priceData[duration] || 0;
             }
             
             calculatedPrice.textContent = '₹' + price.toLocaleString();
-            updateWhatsAppLink(locationName, 'Premium Bunk Stay', durationName, mealsName, price);
+            updateWhatsAppLink(locationName, roomTypeName, durationName, mealsName, price);
         } else {
             roomTypeGroup.style.display = 'block';
             mealGroup.style.display = 'block';
@@ -151,20 +229,25 @@ document.addEventListener('DOMContentLoaded', function() {
                 const sharingTypeName = sharingTypeSelect.options[sharingTypeSelect.selectedIndex].text;
                 roomTypeName = `${roomTypeName} (${sharingTypeName})`;
                 priceData = prices.shamshi.sharing[sharingType];
+            } else if (roomType === 'single') {
+                const bedType = bedTypeSelect.value;
+                const bedTypeName = bedTypeSelect.options[bedTypeSelect.selectedIndex].text;
+                roomTypeName = `${roomTypeName} (${bedTypeName})`;
+                priceData = prices.shamshi.single[bedType];
             } else {
                 priceData = prices.shamshi[roomType];
             }
 
             if (!priceData) {
                 // Fallback
-                priceData = prices.shamshi['single-3-6'];
+                priceData = prices.shamshi.single.standard;
             }
             
             let price = 0;
-            if (duration === 'monthly') {
-                price = priceData.monthly[meals];
+            if (priceData[duration] && typeof priceData[duration] === 'object') {
+                price = priceData[duration][meals] || priceData[duration][2];
             } else {
-                price = priceData[duration];
+                price = priceData[duration] || 0;
             }
             
             calculatedPrice.textContent = '₹' + price.toLocaleString();
@@ -184,8 +267,19 @@ document.addEventListener('DOMContentLoaded', function() {
         calcWhatsapp.href = `https://wa.me/918580788847?text=${encodedText}`;
     }
 
-    locationSelect.addEventListener('change', updateCalculator);
+    let lastLocation = locationSelect ? locationSelect.value : null;
+    locationSelect.addEventListener('change', function(e) {
+        const newLoc = this.value;
+        if (newLoc !== lastLocation) {
+            lastLocation = newLoc;
+            populateRoomTypeOptions(newLoc);
+            roomTypeSelect.dispatchEvent(new Event('change'));
+        }
+        updateCalculator();
+    });
+
     roomTypeSelect.addEventListener('change', updateCalculator);
+    bedTypeSelect.addEventListener('change', updateCalculator);
     sharingTypeSelect.addEventListener('change', updateCalculator);
     durationSelect.addEventListener('change', updateCalculator);
     mealsSelect.addEventListener('change', updateCalculator);
