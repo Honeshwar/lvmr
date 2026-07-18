@@ -82,6 +82,21 @@ function buildEditor(parent, data) {
   });
 }
 
+function isSubRoomGroup(obj) {
+  return (
+    obj &&
+    typeof obj === "object" &&
+    !Array.isArray(obj) &&
+    Object.values(obj).every(
+      (value) =>
+        value &&
+        typeof value === "object" &&
+        !Array.isArray(value) &&
+        Object.values(value).every(isRateObject),
+    )
+  );
+}
+
 function buildRoomCard(parent, roomKey, roomData, parentPath) {
   const roomCard = document.createElement("div");
   roomCard.className = "room-card";
@@ -92,6 +107,26 @@ function buildRoomCard(parent, roomKey, roomData, parentPath) {
 
   if (isRateObject(roomData)) {
     buildPlanRow(roomCard, roomData, [...parentPath, roomKey], roomKey);
+  } else if (isSubRoomGroup(roomData)) {
+    Object.entries(roomData).forEach(([subKey, subData]) => {
+      const subCard = document.createElement("div");
+      subCard.className = "room-card-sub";
+
+      const subTitle = document.createElement("h4");
+      subTitle.textContent = friendlyKey(subKey);
+      subCard.appendChild(subTitle);
+
+      Object.entries(subData).forEach(([planKey, planData]) => {
+        buildPlanRow(
+          subCard,
+          planData,
+          [...parentPath, roomKey, subKey, planKey],
+          planKey,
+        );
+      });
+
+      roomCard.appendChild(subCard);
+    });
   } else {
     Object.entries(roomData).forEach(([planKey, planData]) => {
       buildPlanRow(
