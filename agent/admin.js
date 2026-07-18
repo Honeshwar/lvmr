@@ -215,12 +215,12 @@ function showModal(title, message, commitUrl) {
 
   // Ensure hidden flag is cleared and display is visible for broad compatibility
   overlay.hidden = false;
-  overlay.style.display = 'flex';
+  overlay.style.display = "flex";
 }
 
 function closeModal() {
   const overlay = document.getElementById("modalOverlay");
-  overlay.style.display = 'none';
+  overlay.style.display = "none";
   overlay.hidden = true;
 }
 
@@ -280,13 +280,18 @@ function setupActions() {
 
       if (!response.ok) {
         // helpful hint when Netlify function is missing or not running
-        let hint = '';
+        let hint = "";
         if (response.status === 405) {
-          hint = ' (Method not allowed). Are you running `netlify dev`?';
+          hint = " (Method not allowed). Are you running `netlify dev`?";
         } else if (response.status === 404) {
-          hint = ' (Not found). Are functions deployed or is `netlify dev` running?';
+          hint =
+            " (Not found). Are functions deployed or is `netlify dev` running?";
         }
-        const serverMsg = (result && (result.error || result.message)) || raw || response.statusText || 'Unknown error';
+        const serverMsg =
+          (result && (result.error || result.message)) ||
+          raw ||
+          response.statusText ||
+          "Unknown error";
         throw new Error(`${serverMsg}${hint}`);
       }
 
@@ -294,7 +299,8 @@ function setupActions() {
       showStatus("Pricing config saved and committed successfully.", true);
       showModal(
         "Saved to GitHub",
-        (result && (result.message || 'Your pricing file was committed.')) || 'Saved successfully.',
+        (result && (result.message || "Your pricing file was committed.")) ||
+          "Saved successfully.",
         result && result.commitUrl,
       );
     } catch (error) {
@@ -329,8 +335,8 @@ function setupActions() {
   });
 
   // Close modal on Escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeModal();
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeModal();
   });
 }
 
