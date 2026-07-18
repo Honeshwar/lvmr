@@ -29,6 +29,18 @@ exports.handler = async function (event) {
     return sendJson(400, { error: "Invalid JSON payload." });
   }
 
+  // Verify admin password from payload against environment variable
+  const providedPassword = payload.adminPassword;
+  const adminPassword = process.env.ADMIN_PASSWORD;
+  if (!adminPassword) {
+    return sendJson(500, {
+      error: "Server misconfiguration: ADMIN_PASSWORD is not set.",
+    });
+  }
+  if (!providedPassword || providedPassword !== adminPassword) {
+    return sendJson(401, { error: "Invalid admin password." });
+  }
+
   const prices = payload.prices;
   if (!prices || typeof prices !== "object") {
     return sendJson(400, { error: "Request must include a prices object." });

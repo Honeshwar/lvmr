@@ -170,11 +170,14 @@
         position: fixed;
         inset: 0;
         background: rgba(15, 23, 42, 0.55);
-        display: flex;
+        display: none;
         align-items: center;
         justify-content: center;
         padding: 24px;
         z-index: 1000;
+      }
+      .modal-overlay.show {
+        display: flex;
       }
       .modal-dialog {
         width: 100%;
@@ -296,6 +299,30 @@
       </header>
 
       <div class="panel">
+        <div id="loginOverlay" class="modal-overlay login-overlay" style="display: flex; z-index: 2200;">
+          <div class="modal-dialog" style="max-width: 420px;">
+            <h3>Admin login</h3>
+            <p>Enter the admin password to unlock the pricing editor.</p>
+            <div style="margin-top: 12px; display: flex; gap: 8px">
+              <input
+                id="adminPasswordInput"
+                type="password"
+                placeholder="Admin password"
+                style="
+                  flex: 1;
+                  padding: 10px 12px;
+                  border-radius: 8px;
+                  border: 1px solid #cbd5e1;
+                "
+              />
+              <button id="loginBtn" class="primary">Unlock</button>
+            </div>
+            <div
+              id="loginStatus"
+              style="margin-top: 12px; color: #b91c1c; display: none"
+            ></div>
+          </div>
+        </div>
         <div class="editor-section" id="editor"></div>
         <div class="actions">
           <button type="button" class="primary" id="downloadBtn">
@@ -313,7 +340,7 @@
           Only change the price numbers here. The file name must stay
           <code>calculator-prices.json</code>.
         </div>
-        <div class="modal-overlay" id="modalOverlay" hidden>
+        <div class="modal-overlay status-overlay" id="modalOverlay" hidden>
           <div class="modal-dialog">
             <h3 id="modalTitle">Status</h3>
             <p id="modalMessage"></p>

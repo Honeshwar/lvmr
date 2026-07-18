@@ -99,6 +99,7 @@ To enable it, set these Netlify environment variables:
 - `GITHUB_TOKEN` – a GitHub Personal Access Token with `repo` permission.
 - `GITHUB_REPO` – your repository in `owner/repo` format, for example `yourname/lvmr`.
 - `GITHUB_BRANCH` – optional branch name to commit into (defaults to `dev`).
+- `ADMIN_PASSWORD` – a strong secret password used to unlock the admin editor. Set this in Netlify environment variables (Site settings → Build & deploy → Environment) and do not commit it to the repository.
 
 How to create the GitHub token:
 
@@ -113,6 +114,18 @@ How to find `GITHUB_REPO`:
 - Use the repo path from your GitHub URL, e.g. `github.com/yourname/lvmr` becomes `yourname/lvmr`.
 
 Then open the admin page and click the save button. The UI will post the new pricing config to `/.netlify/functions/save-prices`.
+
+Security notes for admin access
+
+- Create a long random password and set it in Netlify as `ADMIN_PASSWORD`.
+- The admin page will require this password to unlock the editor, and the serverless function will also verify it on every save request.
+- Never store the password in your repository or paste it in public chat. If the password is compromised, rotate it promptly in Netlify settings.
+
+Quick Netlify CLI example:
+
+```bash
+netlify env:set ADMIN_PASSWORD "your-very-strong-password-here"
+```
 
 ## 📍 Location
 

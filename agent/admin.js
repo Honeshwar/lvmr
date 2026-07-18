@@ -265,6 +265,7 @@ function setupActions() {
         body: JSON.stringify({
           prices: data,
           commitMessage: "Update calculator prices from admin UI",
+          adminPassword: window.__ADMIN_PASSWORD || null,
         }),
       });
 
@@ -300,7 +301,10 @@ function setupActions() {
       showModal(
         "Saved to GitHub",
         (result && (result.message || "Your pricing file was committed.")) ||
-          "Saved successfully.",
+          "Saved successfully." +
+            (result && result.commitUrl
+              ? "\n\nNote: It may take up to 2 minutes for GitHub to reflect the changes."
+              : ""),
         result && result.commitUrl,
       );
     } catch (error) {
@@ -325,11 +329,11 @@ function setupActions() {
     updateRawJson(data);
   });
 
-  document
-    .getElementById("closeModalBtn")
-    .addEventListener("click", closeModal);
-  document.getElementById("modalOverlay").addEventListener("click", (event) => {
-    if (event.target === event.currentTarget) {
+const closeBtn = document.getElementById("closeModalBtn");
+    closeBtn.addEventListener("click", closeModal);
+    const modalOverlay = document.getElementById("modalOverlay");
+    modalOverlay.addEventListener("click", (event) => {
+      if (event.target === modalOverlay) {
       closeModal();
     }
   });
@@ -340,7 +344,66 @@ function setupActions() {
   });
 }
 
+function setLoginStatus(msg, isError) {
+  const el = document.getElementById("loginStatus");
+  el.textContent = msg || "";
+  el.style.display = msg ? "block" : "none";
+  el.style.color = isError ? "#b91c1c" : "#166534";
+}
+
+async function doLogin(password) {
+  try {
+    const res = await fetch("/.netlify/functions/auth", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ password }),
+    });
+    const text = await res.text();
+    let body = null;
+    try {
+      body = text ? JSON.parse(text) : null;
+    } catch (e) {
+      body = null;
+    }
+    if (!res.ok) {
+      const msg =
+        (body && (body.error || body.message)) || text || res.statusText;
+      setLoginStatus(msg, true);
+      return false;
+    }
+    // keep password in memory only for this session
+    window.__ADMIN_PASSWORD = password;
+    setLoginStatus("", false);
+    // hide login overlay and initialize editor
+    const overlay = document.getElementById("loginOverlay");
+    overlay.classList.remove("show");
+    overlay.hidden = true;
+    setupActions();
+    loadConfig();
+    return true;
+  } catch (err) {
+    setLoginStatus("Unable to contact authentication endpoint.", true);
+    return false;
+  }
+}
+
+function initLoginHandlers() {
+  const loginBtn = document.getElementById("loginBtn");
+  const input = document.getElementById("adminPasswordInput");
+  loginBtn.addEventListener("click", () => doLogin(input.value));
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") doLogin(input.value);
+  });
+}
+
 window.addEventListener("DOMContentLoaded", () => {
-  setupActions();
-  loadConfig();
+  // show login overlay and wait for authentication before loading editor
+  const overlay = document.getElementById("loginOverlay");
+  overlay.classList.add("show");
+  overlay.hidden = false;
+  initLoginHandlers();
+
+  const statusOverlay = document.getElementById("modalOverlay");
+  statusOverlay.classList.remove("show");
+  statusOverlay.hidden = true;
 });
