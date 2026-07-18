@@ -213,11 +213,14 @@ function showModal(title, message, commitUrl) {
     linkContainer.appendChild(link);
   }
 
+  // Ensure hidden flag is cleared and display is visible for broad compatibility
   overlay.hidden = false;
+  overlay.style.display = 'flex';
 }
 
 function closeModal() {
   const overlay = document.getElementById("modalOverlay");
+  overlay.style.display = 'none';
   overlay.hidden = true;
 }
 
@@ -265,17 +268,34 @@ function setupActions() {
         }),
       });
 
-      const result = await response.json();
+      // Read raw text first to avoid JSON parse errors on empty/non-json responses
+      const raw = await response.text();
+      let result = null;
+      try {
+        result = raw ? JSON.parse(raw) : null;
+      } catch (err) {
+        // keep raw text for error reporting
+        result = null;
+      }
+
       if (!response.ok) {
-        throw new Error(result.error || "Failed to save pricing config.");
+        // helpful hint when Netlify function is missing or not running
+        let hint = '';
+        if (response.status === 405) {
+          hint = ' (Method not allowed). Are you running `netlify dev`?';
+        } else if (response.status === 404) {
+          hint = ' (Not found). Are functions deployed or is `netlify dev` running?';
+        }
+        const serverMsg = (result && (result.error || result.message)) || raw || response.statusText || 'Unknown error';
+        throw new Error(`${serverMsg}${hint}`);
       }
 
       updateRawJson(data);
       showStatus("Pricing config saved and committed successfully.", true);
       showModal(
         "Saved to GitHub",
-        result.message || "Your pricing file was committed.",
-        result.commitUrl,
+        (result && (result.message || 'Your pricing file was committed.')) || 'Saved successfully.',
+        result && result.commitUrl,
       );
     } catch (error) {
       console.error(error);
@@ -306,6 +326,11 @@ function setupActions() {
     if (event.target === event.currentTarget) {
       closeModal();
     }
+  });
+
+  // Close modal on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
   });
 }
 
