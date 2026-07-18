@@ -329,11 +329,11 @@ function setupActions() {
     updateRawJson(data);
   });
 
-const closeBtn = document.getElementById("closeModalBtn");
-    closeBtn.addEventListener("click", closeModal);
-    const modalOverlay = document.getElementById("modalOverlay");
-    modalOverlay.addEventListener("click", (event) => {
-      if (event.target === modalOverlay) {
+  const closeBtn = document.getElementById("closeModalBtn");
+  closeBtn.addEventListener("click", closeModal);
+  const modalOverlay = document.getElementById("modalOverlay");
+  modalOverlay.addEventListener("click", (event) => {
+    if (event.target === modalOverlay) {
       closeModal();
     }
   });
