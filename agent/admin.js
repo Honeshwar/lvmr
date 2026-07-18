@@ -39,8 +39,8 @@ function friendlyKey(key) {
     monthly: "Monthly rate",
     weekly: "Weekly rate",
     "two-week": "2-week rate",
-    2: "2 persons",
-    3: "3 persons",
+    2: "2 meals",
+    3: "3 meals",
   };
   if (key in map) {
     return map[key];
@@ -232,23 +232,13 @@ function clearStatus() {
   status.classList.remove("visible");
 }
 
-function showModal(title, message, commitUrl) {
+function showModal(title, message) {
   const overlay = document.getElementById("modalOverlay");
   document.getElementById("modalTitle").textContent = title;
   document.getElementById("modalMessage").textContent = message;
   const linkContainer = document.getElementById("modalLinkContainer");
   linkContainer.innerHTML = "";
 
-  if (commitUrl) {
-    const link = document.createElement("a");
-    link.href = commitUrl;
-    link.target = "_blank";
-    link.rel = "noreferrer noopener";
-    link.textContent = "View commit on GitHub";
-    linkContainer.appendChild(link);
-  }
-
-  // Ensure hidden flag is cleared and display is visible for broad compatibility
   overlay.hidden = false;
   overlay.style.display = "flex";
 }
@@ -274,7 +264,7 @@ async function loadConfig() {
     buildEditor(editor, data);
     updateRawJson(data);
     showStatus(
-      "Loaded configuration successfully. Edit values and download JSON to update the repository.",
+      "Loaded configuration successfully. Edit values and click Update prices to save changes.",
       true,
     );
   } catch (error) {
@@ -332,15 +322,13 @@ function setupActions() {
       }
 
       updateRawJson(data);
-      showStatus("Pricing config saved and committed successfully.", true);
+      showStatus(
+        "Pricing config saved successfully. Please wait about 30 seconds for live changes.",
+        true,
+      );
       showModal(
-        "Saved to GitHub",
-        (result && (result.message || "Your pricing file was committed.")) ||
-          "Saved successfully." +
-            (result && result.commitUrl
-              ? "\n\nNote: It may take up to 2 minutes for GitHub to reflect the changes."
-              : ""),
-        result && result.commitUrl,
+        "Update complete",
+        "Your pricing update has been saved. Please wait about 30 seconds for the changes to appear live.",
       );
     } catch (error) {
       console.error(error);
