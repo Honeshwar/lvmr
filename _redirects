@@ -1,1 +1,14 @@
-/404.html   404
+# --- Removed pages (410 = permanently gone) ---
+/doubleroom                         410
+/roomvideos                         410
+/help                               410
+/tripleroom                         410
+/singleroom.html                    410
+/midtown                            410
+
+# --- Removed PDFs ---
+/LVMR%20SHAMSHI%20CATALOGUE.pdf     410
+/Midtown%20Menu%20card.pdf          410
+
+# --- Default 404 page ---
+/404.html                           404

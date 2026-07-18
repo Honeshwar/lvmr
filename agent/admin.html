@@ -39,20 +39,46 @@
         margin-bottom: 24px;
       }
       .location-card {
-        margin-bottom: 24px;
-        padding: 24px;
+        margin-bottom: 16px;
+      }
+      .location-toggle {
+        width: 100%;
+        cursor: pointer;
+        border: none;
+        background: #eff6ff;
+        color: #1e3a8a;
+        text-align: left;
+        padding: 18px 22px;
+        border-radius: 18px;
+        font-size: 22px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        box-shadow: 0 4px 18px rgba(15, 23, 42, 0.08);
+      }
+      .location-toggle::after {
+        content: "▾";
+        font-size: 18px;
+        transition: transform 0.25s ease;
+      }
+      .location-card.collapsed .location-toggle::after {
+        transform: rotate(-90deg);
+      }
+      .location-body {
+        margin-top: 12px;
+        padding: 20px;
         border: 1px solid #dbeafe;
         border-radius: 18px;
         background: #ffffff;
         box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
       }
-      .location-card h2 {
-        margin-top: 0;
-        font-size: 24px;
-        color: #1e40af;
+      .location-card.collapsed .location-body {
+        display: none;
       }
-      .location-card p {
-        margin: 8px 0 0;
+      .location-body p {
+        margin: 0 0 18px;
         color: #475569;
       }
       .room-card {
@@ -262,6 +288,12 @@
         color: #2563eb;
         text-decoration: none;
       }
+      @media (max-width: 900px) {
+        .plan-row {
+          grid-template-columns: 1fr;
+        }
+      }
+
       @media (max-width: 760px) {
         .field-row {
           flex-direction: column;
@@ -269,6 +301,16 @@
         }
         .field-row label {
           margin-bottom: 6px;
+        }
+        .actions {
+          flex-direction: column;
+        }
+        .actions button {
+          width: 100%;
+        }
+        .location-toggle {
+          font-size: 18px;
+          padding: 16px 18px;
         }
       }
     </style>
@@ -305,8 +347,8 @@
         <ol class="steps">
           <li>Find the location, room type, plan, and person count.</li>
           <li>Type the new price amount in the field.</li>
-          <li>Click <strong>Download updated prices</strong>.</li>
-          <li>Replace the repo file and commit the change.</li>
+          <li>Click <strong>Update prices</strong>.</li>
+          <li>Wait about 30 seconds for live changes to appear.</li>
         </ol>
       </header>
 
@@ -342,7 +384,7 @@
         <div class="editor-section" id="editor"></div>
         <div class="actions">
           <button type="button" class="primary" id="downloadBtn">
-            Download updated prices
+            Update prices
           </button>
           <button type="button" class="secondary" id="reloadBtn">
             Reset original values
