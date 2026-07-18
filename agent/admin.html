@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LVMR Calculator Admin</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f7fb; color: #1f2937; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+    header { margin-bottom: 24px; }
+    h1 { margin: 0 0 8px; font-size: 28px; }
+    p { margin: 8px 0 16px; line-height: 1.6; }
+    .panel { background: #ffffff; border: 1px solid #dde3eb; border-radius: 12px; padding: 24px; box-shadow: 0 10px 30px rgba(15,23,42,0.05); }
+    .editor-section { margin-bottom: 24px; }
+    .location-card { margin-bottom: 24px; padding: 24px; border: 1px solid #dbeafe; border-radius: 18px; background: #ffffff; box-shadow: 0 8px 24px rgba(15,23,42,0.04); }
+    .location-card h2 { margin-top: 0; font-size: 24px; color: #1e40af; }
+    .location-card p { margin: 8px 0 0; color: #475569; }
+    .room-card { margin-top: 22px; padding: 20px; border: 1px solid #e2e8f0; border-radius: 18px; background: #f8fbff; }
+    .room-card h3 { margin: 0 0 14px; font-size: 20px; color: #0f172a; }
+    .plan-row { display: grid; grid-template-columns: 240px 1fr; gap: 18px; margin-bottom: 18px; padding: 18px; border: 1px solid #cbd5e1; border-radius: 16px; background: #ffffff; }
+    .plan-title { font-weight: 700; color: #1f2937; }
+    .plan-inputs { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 14px; }
+    .input-field { display: grid; gap: 8px; font-size: 14px; color: #475569; }
+    .input-field span { font-weight: 700; }
+    .price-entry { display: flex; align-items: center; gap: 8px; }
+    .currency-prefix { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; padding: 10px 12px; background: #e0f2fe; color: #0c4a6e; border-radius: 10px; font-weight: 700; }
+    .input-field input { width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 10px; background: #fff; text-align: right; }
+    .field-row, .editor-group, .nested { display: none; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+    button { border: none; border-radius: 10px; padding: 12px 20px; cursor: pointer; font-size: 15px; font-weight: 600; }
+    button.primary { background: #2563eb; color: #fff; }
+    button.secondary { background: #e2e8f0; color: #111827; }
+    button:disabled { opacity: 0.6; cursor: not-allowed; }
+    .notice { margin-top: 16px; font-size: 14px; color: #475569; }
+    .status { margin-top: 18px; padding: 14px 16px; border-radius: 10px; background: #eff6ff; color: #1e3a8a; display: none; }
+    .status.visible { display: block; }
+    .modal-overlay { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.55); display: flex; align-items: center; justify-content: center; padding: 24px; z-index: 1000; }
+    .modal-dialog { width: 100%; max-width: 520px; background: #ffffff; border-radius: 18px; padding: 26px; box-shadow: 0 24px 60px rgba(15,23,42,0.2); }
+    .modal-dialog h3 { margin: 0 0 14px; font-size: 22px; color: #0f172a; }
+    .modal-dialog p { margin: 0 0 16px; line-height: 1.6; color: #334155; }
+    .modal-actions { display: flex; justify-content: flex-end; gap: 12px; margin-top: 18px; }
+    .modal-dialog a { color: #2563eb; text-decoration: none; font-weight: 600; }
+    .steps { margin: 0 0 20px; padding-left: 20px; color: #334155; }
+    .steps li { margin-bottom: 10px; }
+    .info-box { margin: 0 0 20px; padding: 18px 20px; border-radius: 12px; background: #eef2ff; color: #1e293b; border: 1px solid #c7d2fe; }
+    .info-box strong { display: block; margin-bottom: 10px; }
+    .info-box p { margin: 8px 0; }
+    .info-box ul { margin: 8px 0 0; padding-left: 20px; }
+    textarea { width: 100%; min-height: 180px; margin-top: 16px; border: 1px solid #cbd5e1; border-radius: 12px; padding: 14px; font-family: monospace; background: #f8fafc; color: #0f172a; }
+    .docs-link { color: #2563eb; text-decoration: none; }
+    @media (max-width: 760px) { .field-row { flex-direction: column; align-items: stretch; } .field-row label { margin-bottom: 6px; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>LVMR Pricing Admin</h1>
+      <p>Update room prices using this simple editor. Enter only the new price numbers, then download the file and save it as <code>agent/calculator-prices.json</code> in your branch.</p>
+      <div class="info-box">
+        <strong>What each field means</strong>
+        <p><strong>Location</strong> = which property the price belongs to.</p>
+        <p><strong>Room type</strong> = the category of room or bed.</p>
+        <p><strong>Plan</strong> = the booking length: monthly, weekly, or two-week.</p>
+        <p><strong>Persons</strong> = the number of people sharing the room.</p>
+        <ul>
+          <li>Use the field label to find the exact price item.</li>
+          <li>Do not change the field names or text, only change the number.</li>
+        </ul>
+      </div>
+      <ol class="steps">
+        <li>Find the location, room type, plan, and person count.</li>
+        <li>Type the new price amount in the field.</li>
+        <li>Click <strong>Download updated prices</strong>.</li>
+        <li>Replace the repo file and commit the change.</li>
+      </ol>
+    </header>
+
+    <div class="panel">
+      <div class="editor-section" id="editor"></div>
+      <div class="actions">
+        <button type="button" class="primary" id="downloadBtn">Download updated prices</button>
+        <button type="button" class="secondary" id="reloadBtn">Reset original values</button>
+        <button type="button" class="secondary" id="toggleJsonBtn">Show raw JSON</button>
+      </div>
+      <div class="status" id="status"></div>
+      <div class="notice">Only change the price numbers here. The file name must stay <code>calculator-prices.json</code>.</div>
+      <div class="modal-overlay" id="modalOverlay" hidden>
+        <div class="modal-dialog">
+          <h3 id="modalTitle">Status</h3>
+          <p id="modalMessage"></p>
+          <div id="modalLinkContainer"></div>
+          <div class="modal-actions">
+            <button type="button" class="secondary" id="closeModalBtn">Close</button>
+          </div>
+        </div>
+      </div>
+      <textarea id="rawJson" readonly hidden></textarea>
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

@@ -118,56 +118,46 @@ document.addEventListener('DOMContentLoaded', function() {
     const shamshiInfo = document.getElementById('shamshi-info');
     const mohalInfo = document.getElementById('mohal-info');
 
-    const prices = {
-        shamshi: {
-            'single': {
-                'standard': { 
-                    monthly: { 2: 10000, 3: 12000 }, 
-                    weekly: { 2: 4500, 3: 6000 }, 
-                    'two-week': { 2: 6500, 3: 8000 } 
-                },
-                'queen': { 
-                    monthly: { 2: 11500, 3: 13000 }, 
-                    weekly: { 2: 5000, 3: 6500 }, 
-                    'two-week': { 2: 7500, 3: 9000 } 
+    let prices = null;
+
+    function loadPrices() {
+        return fetch('agent/calculator-prices.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Unable to load pricing config: ${response.status}`);
                 }
-            },
-            'premium': { 
-                monthly: { 2: 18000, 3: 20000 }, 
-                weekly: { 2: 8000, 3: 10000 }, 
-                'two-week': { 2: 13000, 3: 15000 } 
-            },
-            'sharing': {
-                'double': { 
-                    monthly: { 2: 8500, 3: 10000 }, 
-                    weekly: { 2: 4000, 3: 5500 }, 
-                    'two-week': { 2: 6000, 3: 7500 } 
-                },
-                'triple': { 
-                    monthly: { 2: 8000, 3: 9500 }, 
-                    weekly: { 2: 3500, 3: 5000 }, 
-                    'two-week': { 2: 5500, 3: 7000 } 
-                }
-            }
-        },
-        mohal: {
-            'single': { 
-                monthly: { 2: 9500, 3: 11500 }, 
-                weekly: { 2: 4000, 3: 5500 }, 
-                'two-week': { 2: 6000, 3: 7500 } 
-            },
-            'sharing': { 
-                monthly: { 2: 8000, 3: 9500 }, 
-                weekly: { 2: 3500, 3: 5000 }, 
-                'two-week': { 2: 5500, 3: 7000 } 
-            },
-            'bunk': { 
-                monthly: { 2: 8000, 3: 9000 }, 
-                weekly: { 2: 4000, 3: 5500 }, 
-                'two-week': { 2: 6000, 3: 7500 } 
-            }
+                return response.json();
+            })
+            .then(data => {
+                prices = data.prices || {};
+            })
+            .catch(error => {
+                console.error('Calculator pricing load failed:', error);
+                prices = {};
+            });
+    }
+
+    function getPriceData(location, roomType, bedType, sharingType) {
+        if (!prices || !prices[location]) {
+            return null;
         }
-    };
+
+        if (location === 'mohal') {
+            return prices.mohal[roomType] || prices.mohal.bunk || null;
+        }
+
+        if (location === 'shamshi') {
+            if (roomType === 'sharing') {
+                return prices.shamshi.sharing?.[sharingType] || null;
+            }
+            if (roomType === 'single') {
+                return prices.shamshi.single?.[bedType] || null;
+            }
+            return prices.shamshi[roomType] || null;
+        }
+
+        return null;
+    }
 
     function updateCalculator() {
         const location = locationSelect.value;
@@ -202,15 +192,18 @@ document.addEventListener('DOMContentLoaded', function() {
             mohalInfo.style.display = 'block';
             
             let roomTypeName = roomTypeSelect.options[roomTypeSelect.selectedIndex].text;
-            let priceData = prices.mohal[roomType];
+            let priceData = getPriceData(location, roomType, bedTypeSelect.value, sharingTypeSelect.value);
             
-            if (!priceData) priceData = prices.mohal.bunk; // Fallback
+            if (!priceData) {
+                // Fallback
+                priceData = prices.mohal?.bunk || null;
+            }
             
             let price = 0;
-            if (priceData[duration] && typeof priceData[duration] === 'object') {
-                price = priceData[duration][meals] || priceData[duration][2];
+            if (priceData && priceData[duration] && typeof priceData[duration] === 'object') {
+                price = priceData[duration][meals] || priceData[duration][2] || 0;
             } else {
-                price = priceData[duration] || 0;
+                price = (priceData && priceData[duration]) || 0;
             }
             
             calculatedPrice.textContent = '₹' + price.toLocaleString();
@@ -228,26 +221,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 const sharingType = sharingTypeSelect.value;
                 const sharingTypeName = sharingTypeSelect.options[sharingTypeSelect.selectedIndex].text;
                 roomTypeName = `${roomTypeName} (${sharingTypeName})`;
-                priceData = prices.shamshi.sharing[sharingType];
+                priceData = getPriceData(location, roomType, bedTypeSelect.value, sharingType);
             } else if (roomType === 'single') {
                 const bedType = bedTypeSelect.value;
                 const bedTypeName = bedTypeSelect.options[bedTypeSelect.selectedIndex].text;
                 roomTypeName = `${roomTypeName} (${bedTypeName})`;
-                priceData = prices.shamshi.single[bedType];
+                priceData = getPriceData(location, roomType, bedType, sharingTypeSelect.value);
             } else {
-                priceData = prices.shamshi[roomType];
+                priceData = getPriceData(location, roomType, bedTypeSelect.value, sharingTypeSelect.value);
             }
 
             if (!priceData) {
                 // Fallback
-                priceData = prices.shamshi.single.standard;
+                priceData = prices.shamshi?.single?.standard || null;
             }
             
             let price = 0;
-            if (priceData[duration] && typeof priceData[duration] === 'object') {
-                price = priceData[duration][meals] || priceData[duration][2];
+            if (priceData && priceData[duration] && typeof priceData[duration] === 'object') {
+                price = priceData[duration][meals] || priceData[duration][2] || 0;
             } else {
-                price = priceData[duration] || 0;
+                price = (priceData && priceData[duration]) || 0;
             }
             
             calculatedPrice.textContent = '₹' + price.toLocaleString();
@@ -284,6 +277,8 @@ document.addEventListener('DOMContentLoaded', function() {
     durationSelect.addEventListener('change', updateCalculator);
     mealsSelect.addEventListener('change', updateCalculator);
 
-    // Initial calculation
-    updateCalculator();
+    // Initial load of pricing and calculation
+    loadPrices().then(() => {
+        updateCalculator();
+    });
 });

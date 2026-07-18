@@ -89,6 +89,26 @@ Warm Regards,
 ### Hosting & Deployment
 - **Static Hosting (Netlify / Vercel compatible)**
 
+### Admin pricing save flow
+This project now supports a secure Netlify serverless function that can commit updated pricing values directly to GitHub.
+
+To enable it, set these Netlify environment variables:
+- `GITHUB_TOKEN` – a GitHub Personal Access Token with `repo` permission.
+- `GITHUB_REPO` – your repository in `owner/repo` format, for example `yourname/lvmr`.
+- `GITHUB_BRANCH` – optional branch name to commit into (defaults to `dev`).
+
+How to create the GitHub token:
+1. Open GitHub and go to your profile icon > Settings.
+2. In the left menu, choose `Developer settings`.
+3. Select `Personal access tokens` and then `Tokens (classic)`.
+4. Click `Generate new token`, choose a name, set an expiration, and enable the `repo` scope.
+5. Copy the token and add it to Netlify as `GITHUB_TOKEN`.
+
+How to find `GITHUB_REPO`:
+- Use the repo path from your GitHub URL, e.g. `github.com/yourname/lvmr` becomes `yourname/lvmr`.
+
+Then open the admin page and click the save button. The UI will post the new pricing config to `/.netlify/functions/save-prices`.
+
 
 
 ## 📍 Location
