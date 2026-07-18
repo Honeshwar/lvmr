@@ -378,6 +378,7 @@ async function doLogin(password) {
     const overlay = document.getElementById("loginOverlay");
     overlay.classList.remove("show");
     overlay.hidden = true;
+    overlay.style.display = "none";
     setupActions();
     loadConfig();
     return true;
