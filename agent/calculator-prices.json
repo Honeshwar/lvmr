@@ -3,14 +3,14 @@
     "shamshi": {
       "single": {
         "standard": {
-          "monthly": 0,
-          "weekly": 0,
-          "two-week": 0
+          "monthly": { "2": 10000, "3": 12000 },
+          "weekly": { "2": 4500, "3": 6000 },
+          "two-week": { "2": 6500, "3": 8000 }
         },
         "queen": {
-          "monthly": 0,
-          "weekly": 0,
-          "two-week": 0
+          "monthly": { "2": 11500, "3": 13000 },
+          "weekly": { "2": 5000, "3": 6500 },
+          "two-week": { "2": 7500, "3": 9000 }
         }
       },
       "premium": {
@@ -29,14 +29,14 @@
       },
       "sharing": {
         "double": {
-          "monthly": 0,
-          "weekly": 0,
-          "two-week": 0
+          "monthly": { "2": 8500, "3": 10000 },
+          "weekly": { "2": 4000, "3": 5500 },
+          "two-week": { "2": 6000, "3": 7500 }
         },
         "triple": {
-          "monthly": 0,
-          "weekly": 0,
-          "two-week": 0
+          "monthly": { "2": 8000, "3": 9500 },
+          "weekly": { "2": 3500, "3": 5000 },
+          "two-week": { "2": 5500, "3": 7000 }
         }
       }
     },
@@ -80,7 +80,7 @@
         },
         "two-week": {
           "2": 6000,
-          "3": 7523400
+          "3": 7500
         }
       }
     }
