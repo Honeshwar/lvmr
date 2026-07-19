@@ -1,6 +1,9 @@
-# LVMR MIDTOWN 
+# LVMR MIDTOWN
+
 [![Netlify Status](https://api.netlify.com/api/v1/badges/bed3d440-ae7d-4776-ad2b-bcbb2b162bb2/deploy-status)](https://app.netlify.com/projects/lvmr/deploys)
-## Elevate Your Living Experience  
+
+## Elevate Your Living Experience
+
 **PG (Paying Guest) for Working Professionals & Students**
 
 LVMR MIDTOWN PG is managed and operated by **LVMR GROUP (Lower Valley Mountain Residences)**.  
@@ -12,9 +15,6 @@ Warm Regards,
 **Team LVMR ❤️**
 
 🚀 Live Website 🔗 https://lvmr.in/
-
-
-
 
 ## 📸 Screenshots
 
@@ -42,8 +42,6 @@ Warm Regards,
 
 > Clean, modern UI with smooth navigation and fully responsive design.
 
-
-
 ## ✨ Features
 
 - ⚡ Fast & lightweight static website
@@ -55,16 +53,16 @@ Warm Regards,
 - 📞 One-click call & email support
 - 🔒 CCTV & safety-focused facility highlights
 
-
-
 ## 🛠 Tech Stack
 
 ### Frontend
+
 - **HTML5**
 - **CSS3**
 - **JavaScript**
 
 ### UI & Styling
+
 - **Bootstrap**
 - **Custom CSS**
 - **Animate.css**
@@ -73,6 +71,7 @@ Warm Regards,
 - **Ionicons**
 
 ### JavaScript Libraries
+
 - **jQuery**
 - **Owl Carousel**
 - **Magnific Popup**
@@ -80,6 +79,7 @@ Warm Regards,
 - **jQuery Stellar (Parallax)**
 
 ### SEO & Optimization
+
 - **Meta Tags**
 - **Open Graph (Facebook)**
 - **Twitter Cards**
@@ -87,22 +87,55 @@ Warm Regards,
 - **WebP images for performance**
 
 ### Hosting & Deployment
+
 - **Static Hosting (Netlify / Vercel compatible)**
 
+### Admin pricing save flow
 
+This project now supports a secure Netlify serverless function that can commit updated pricing values directly to GitHub.
+
+To enable it, set these Netlify environment variables:
+
+- `GITHUB_TOKEN` – a GitHub Personal Access Token with `repo` permission.
+- `GITHUB_REPO` – your repository in `owner/repo` format, for example `yourname/lvmr`.
+- `GITHUB_BRANCH` – optional branch name to commit into (defaults to `dev`).
+- `ADMIN_PASSWORD` – a strong secret password used to unlock the admin editor. Set this in Netlify environment variables (Site settings → Build & deploy → Environment) and do not commit it to the repository.
+
+How to create the GitHub token:
+
+1. Open GitHub and go to your profile icon > Settings.
+2. In the left menu, choose `Developer settings`.
+3. Select `Personal access tokens` and then `Tokens (classic)`.
+4. Click `Generate new token`, choose a name, set an expiration, and enable the `repo` scope.
+5. Copy the token and add it to Netlify as `GITHUB_TOKEN`.
+
+How to find `GITHUB_REPO`:
+
+- Use the repo path from your GitHub URL, e.g. `github.com/yourname/lvmr` becomes `yourname/lvmr`.
+
+Then open the admin page and click the save button. The UI will post the new pricing config to `/.netlify/functions/save-prices`.
+
+Security notes for admin access
+
+- Create a long random password and set it in Netlify as `ADMIN_PASSWORD`.
+- The admin page will require this password to unlock the editor, and the serverless function will also verify it on every save request.
+- Never store the password in your repository or paste it in public chat. If the password is compromised, rotate it promptly in Netlify settings.
+
+Quick Netlify CLI example:
+
+```bash
+netlify env:set ADMIN_PASSWORD "your-very-strong-password-here"
+```
 
 ## 📍 Location
+
 **Shamshi, Kullu – Himachal Pradesh, India**  
 Near Bhuntar Airport & NH connectivity
 
-
-
 ## 📞 Contact
 
-- **Phone:** +91 8580788847, +91 8278778256  
-- **Email:** info@lvmr.in  
+- **Phone:** +91 8580788847, +91 8278778256
+- **Email:** info@lvmr.in
 - **Website:** https://lvmr.in/
-
-
 
 © 2025 **LVMR Group**. All rights reserved.
