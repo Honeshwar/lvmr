@@ -305,7 +305,7 @@ function setupActions() {
   downloadBtn.addEventListener("click", async () => {
     const data = collectFormData();
     try {
-      const response = await fetch("/.netlify/functions/save-prices", {
+      const response = await fetch("/api/save-prices", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -326,13 +326,13 @@ function setupActions() {
       }
 
       if (!response.ok) {
-        // helpful hint when Netlify function is missing or not running
         let hint = "";
         if (response.status === 405) {
-          hint = " (Method not allowed). Are you running `netlify dev`?";
+          hint =
+            " (Method not allowed). Is your deployment able to serve API functions?";
         } else if (response.status === 404) {
           hint =
-            " (Not found). Are functions deployed or is `netlify dev` running?";
+            " (Not found). Are serverless functions deployed or is the endpoint path correct?";
         }
         const serverMsg =
           (result && (result.error || result.message)) ||
@@ -397,7 +397,7 @@ function setLoginStatus(msg, isError) {
 
 async function doLogin(password) {
   try {
-    const res = await fetch("/.netlify/functions/auth", {
+    const res = await fetch("/api/auth", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ password }),

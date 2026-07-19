@@ -1,14 +1,12 @@
 const FILE_PATH = "agent/calculator-prices.json";
 
-const sendJson = (statusCode, body) => ({
-  statusCode,
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify(body),
-});
+const sendJson = (res, statusCode, body) => {
+  res.status(statusCode).json(body);
+};
 
-exports.handler = async function (event) {
-  if (event.httpMethod !== "POST") {
-    return sendJson(405, { error: "Method not allowed" });
+async function handler(req, res) {
+  if (req.method !== "POST") {
+    return sendJson(res, 405, { error: "Method not allowed" });
   }
 
   const token = process.env.GITHUB_TOKEN;
@@ -16,41 +14,44 @@ exports.handler = async function (event) {
   const branch = process.env.GITHUB_BRANCH || "dev";
 
   if (!token || !repo) {
-    return sendJson(500, {
+    return sendJson(res, 500, {
       error:
-        "Missing environment variables. Set GITHUB_TOKEN and GITHUB_REPO in Netlify settings.",
+        "Missing environment variables. Set GITHUB_TOKEN and GITHUB_REPO in Vercel settings.",
     });
   }
 
-  let payload;
-  try {
-    payload = JSON.parse(event.body);
-  } catch (error) {
-    return sendJson(400, { error: "Invalid JSON payload." });
+  let payload = req.body;
+  if (typeof payload === "string") {
+    try {
+      payload = JSON.parse(payload);
+    } catch (error) {
+      return sendJson(res, 400, { error: "Invalid JSON payload." });
+    }
   }
 
-  // Verify admin password from payload against environment variable
-  const providedPassword = payload.adminPassword;
+  const providedPassword = payload && payload.adminPassword;
   const adminPassword = process.env.ADMIN_PASSWORD;
   if (!adminPassword) {
-    return sendJson(500, {
+    return sendJson(res, 500, {
       error: "Server misconfiguration: ADMIN_PASSWORD is not set.",
     });
   }
   if (!providedPassword || providedPassword !== adminPassword) {
-    return sendJson(401, { error: "Invalid admin password." });
+    return sendJson(res, 401, { error: "Invalid admin password." });
   }
 
-  const prices = payload.prices;
+  const prices = payload && payload.prices;
   if (!prices || typeof prices !== "object") {
-    return sendJson(400, { error: "Request must include a prices object." });
+    return sendJson(res, 400, {
+      error: "Request must include a prices object.",
+    });
   }
 
   const commitMessage = payload.commitMessage || "Update calculator prices";
 
   const [owner, repository] = repo.split("/");
   if (!owner || !repository) {
-    return sendJson(500, {
+    return sendJson(res, 500, {
       error: "GITHUB_REPO must be in owner/repo format.",
     });
   }
@@ -60,7 +61,7 @@ exports.handler = async function (event) {
     Authorization: `Bearer ${token}`,
     "Content-Type": "application/json",
     Accept: "application/vnd.github+json",
-    "User-Agent": "netlify-save-prices-function",
+    "User-Agent": "vercel-save-prices-function",
   };
 
   const content = Buffer.from(JSON.stringify({ prices }, null, 2)).toString(
@@ -105,7 +106,7 @@ exports.handler = async function (event) {
 
     const result = await updateResponse.json();
     const commitSha = result.commit && result.commit.sha;
-    return sendJson(200, {
+    return sendJson(res, 200, {
       message: "Pricing config committed successfully.",
       file: result.content && result.content.path,
       commit: commitSha,
@@ -114,9 +115,11 @@ exports.handler = async function (event) {
         : undefined,
     });
   } catch (error) {
-    return sendJson(500, {
+    return sendJson(res, 500, {
       error: "Unexpected error saving prices.",
       details: error.message,
     });
   }
-};
+}
+
+module.exports = handler;

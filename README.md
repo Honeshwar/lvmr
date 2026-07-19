@@ -1,7 +1,5 @@
 # LVMR MIDTOWN
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/bed3d440-ae7d-4776-ad2b-bcbb2b162bb2/deploy-status)](https://app.netlify.com/projects/lvmr/deploys)
-
 ## Elevate Your Living Experience
 
 **PG (Paying Guest) for Working Professionals & Students**
@@ -88,18 +86,18 @@ Warm Regards,
 
 ### Hosting & Deployment
 
-- **Static Hosting (Netlify / Vercel compatible)**
+- **Static Hosting (Vercel compatible)**
 
 ### Admin pricing save flow
 
-This project now supports a secure Netlify serverless function that can commit updated pricing values directly to GitHub.
+This project supports secure serverless functions that can commit updated pricing values directly to GitHub.
 
-To enable it, set these Netlify environment variables:
+To enable it on Vercel, set these environment variables:
 
 - `GITHUB_TOKEN` – a GitHub Personal Access Token with `repo` permission.
 - `GITHUB_REPO` – your repository in `owner/repo` format, for example `yourname/lvmr`.
 - `GITHUB_BRANCH` – optional branch name to commit into (defaults to `dev`).
-- `ADMIN_PASSWORD` – a strong secret password used to unlock the admin editor. Set this in Netlify environment variables (Site settings → Build & deploy → Environment) and do not commit it to the repository.
+- `ADMIN_PASSWORD` – a strong secret password used to unlock the admin editor. Set this in Vercel Environment Variables and do not commit it to the repository.
 
 How to create the GitHub token:
 
@@ -107,24 +105,24 @@ How to create the GitHub token:
 2. In the left menu, choose `Developer settings`.
 3. Select `Personal access tokens` and then `Tokens (classic)`.
 4. Click `Generate new token`, choose a name, set an expiration, and enable the `repo` scope.
-5. Copy the token and add it to Netlify as `GITHUB_TOKEN`.
+5. Copy the token and add it to Vercel as `GITHUB_TOKEN`.
 
 How to find `GITHUB_REPO`:
 
 - Use the repo path from your GitHub URL, e.g. `github.com/yourname/lvmr` becomes `yourname/lvmr`.
 
-Then open the admin page and click the save button. The UI will post the new pricing config to `/.netlify/functions/save-prices`.
+Then open the admin page and click the save button. The UI will post the new pricing config to `/api/save-prices`.
 
 Security notes for admin access
 
-- Create a long random password and set it in Netlify as `ADMIN_PASSWORD`.
+- Create a long random password and set it in Vercel as `ADMIN_PASSWORD`.
 - The admin page will require this password to unlock the editor, and the serverless function will also verify it on every save request.
-- Never store the password in your repository or paste it in public chat. If the password is compromised, rotate it promptly in Netlify settings.
+- Never store the password in your repository or paste it in public chat. If the password is compromised, rotate it promptly in Vercel settings.
 
-Quick Netlify CLI example:
+Quick Vercel CLI example:
 
 ```bash
-netlify env:set ADMIN_PASSWORD "your-very-strong-password-here"
+vercel env add ADMIN_PASSWORD
 ```
 
 ## 📍 Location
